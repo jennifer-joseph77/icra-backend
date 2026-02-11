@@ -1,0 +1,513 @@
+[
+  {
+    "id": "lib-001",
+    "name": "Morrison Main Library",
+    "type": "library",
+    "location": "Central Quad, Building A",
+    "hours": {
+      "monday_friday": "7:00 AM - 11:00 PM",
+      "saturday": "9:00 AM - 9:00 PM",
+      "sunday": "10:00 AM - 10:00 PM"
+    },
+    "description": "The Morrison Main Library is the largest library on campus with over 500,000 volumes and 200 study seats. It houses the general collection, periodicals archive, and a dedicated quiet study zone on the third floor. The library also offers interlibrary loan services and research consultation appointments.",
+    "contact": "mainlibrary@university.edu | (555) 100-2000",
+    "additional_info": [
+      "Free printing: 50 pages per semester per student",
+      "Group study rooms can be reserved online up to 7 days in advance",
+      "24-hour access during finals week (last two weeks of each semester)",
+      "Laptop lending program available at the front desk"
+    ]
+  },
+  {
+    "id": "lib-002",
+    "name": "Chen Science & Engineering Library",
+    "type": "library",
+    "location": "Engineering Quad, Building E, 2nd Floor",
+    "hours": {
+      "monday_friday": "8:00 AM - 9:00 PM",
+      "saturday": "10:00 AM - 6:00 PM",
+      "sunday": "12:00 PM - 8:00 PM"
+    },
+    "description": "The Chen Science & Engineering Library specializes in STEM resources including technical journals, conference proceedings, and digital databases like IEEE Xplore and ACM Digital Library. It has 80 study seats and 20 computer workstations with specialized software.",
+    "contact": "scilib@university.edu | (555) 100-2010",
+    "additional_info": [
+      "Access to IEEE Xplore, ACM Digital Library, and SpringerLink",
+      "3D printing service available (submit jobs at the help desk)",
+      "Technical writing workshops held every Wednesday at 3 PM",
+      "Quiet study zone on the mezzanine level"
+    ]
+  },
+  {
+    "id": "lib-003",
+    "name": "Harper Digital Media Library",
+    "type": "library",
+    "location": "Arts Building, Room 150",
+    "hours": {
+      "monday_friday": "9:00 AM - 7:00 PM",
+      "saturday": "10:00 AM - 5:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "The Harper Digital Media Library provides access to multimedia resources, streaming databases, and creative software. It includes audio/video editing suites, a podcast recording booth, and a digital archives collection spanning campus history.",
+    "contact": "medialib@university.edu | (555) 100-2020",
+    "additional_info": [
+      "Four audio/video editing suites available by reservation",
+      "Podcast recording booth (1-hour slots, book online)",
+      "Access to Kanopy, Criterion, and campus digital archives",
+      "Equipment checkout: cameras, microphones, tripods"
+    ]
+  },
+  {
+    "id": "lab-001",
+    "name": "Turing Computer Science Lab",
+    "type": "lab",
+    "location": "Computer Science Building (CSB), Room 210",
+    "hours": {
+      "monday_friday": "7:00 AM - 10:00 PM",
+      "saturday": "9:00 AM - 6:00 PM",
+      "sunday": "12:00 PM - 8:00 PM"
+    },
+    "description": "The Turing CS Lab is the primary computer lab for computer science students. It has 60 high-performance workstations running Ubuntu Linux and Windows dual-boot, with development tools including VS Code, IntelliJ, and PyCharm pre-installed. The lab also has a dedicated GPU cluster section for machine learning coursework.",
+    "contact": "cslab@university.edu | (555) 200-3000",
+    "additional_info": [
+      "Access requires valid student ID and CS department enrollment",
+      "GPU cluster (8x NVIDIA RTX 4090) available for ML coursework — sign up with TA",
+      "Lab monitors on duty during all open hours",
+      "Printing available: black & white and color (charges apply for color)"
+    ]
+  },
+  {
+    "id": "lab-002",
+    "name": "Franklin Engineering Lab",
+    "type": "lab",
+    "location": "Engineering Building, Room 315",
+    "hours": {
+      "monday_friday": "8:00 AM - 9:00 PM",
+      "saturday": "10:00 AM - 5:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "The Franklin Engineering Lab provides 40 workstations equipped with engineering software including MATLAB, SolidWorks, AutoCAD, and ANSYS. The lab supports coursework for electrical, mechanical, and civil engineering programs and includes a hardware prototyping section.",
+    "contact": "englab@university.edu | (555) 200-3010",
+    "additional_info": [
+      "MATLAB, SolidWorks, AutoCAD, ANSYS, and LabVIEW installed on all machines",
+      "Hardware prototyping bench with oscilloscopes and soldering stations",
+      "Access requires engineering department enrollment",
+      "TA help sessions: Tuesdays and Thursdays 4-6 PM"
+    ]
+  },
+  {
+    "id": "lab-003",
+    "name": "Innovation Makerspace",
+    "type": "lab",
+    "location": "Student Union, Lower Level, Room B05",
+    "hours": {
+      "monday_friday": "10:00 AM - 8:00 PM",
+      "saturday": "11:00 AM - 5:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "The Innovation Makerspace is open to all students and provides access to 3D printers, laser cutters, CNC machines, and electronics workbenches. Staff members offer training sessions for equipment use. It serves both academic projects and personal creative work.",
+    "contact": "makerspace@university.edu | (555) 200-3020",
+    "additional_info": [
+      "Open to all students regardless of major",
+      "Mandatory safety orientation required before first use",
+      "3D printers: 4x Prusa MK4, 2x resin printers",
+      "Laser cutter, CNC router, and vinyl cutter available",
+      "Materials available for purchase at cost"
+    ]
+  },
+  {
+    "id": "lab-004",
+    "name": "Data Science & AI Research Lab",
+    "type": "lab",
+    "location": "Computer Science Building (CSB), Room 405",
+    "hours": {
+      "monday_friday": "9:00 AM - 6:00 PM",
+      "saturday": "By appointment only",
+      "sunday": "Closed"
+    },
+    "description": "The Data Science & AI Research Lab is a graduate-level facility for advanced research in machine learning, natural language processing, and computer vision. It houses a dedicated compute cluster and is supervised by faculty from the CS and Statistics departments.",
+    "contact": "dslab@university.edu | (555) 200-3030",
+    "additional_info": [
+      "Access restricted to graduate students and approved undergrad researchers",
+      "Dedicated compute cluster: 4 nodes with A100 GPUs",
+      "Weekly research seminar: Fridays at 2 PM",
+      "Contact Dr. Patel (rpatel@university.edu) for access requests"
+    ]
+  },
+  {
+    "id": "food-001",
+    "name": "University Commons Dining Hall",
+    "type": "food",
+    "location": "Student Union, 1st Floor",
+    "hours": {
+      "breakfast": "7:00 AM - 10:00 AM (Mon-Fri)",
+      "lunch": "11:00 AM - 2:30 PM (Mon-Fri)",
+      "dinner": "5:00 PM - 8:00 PM (Mon-Fri)",
+      "weekend_brunch": "10:00 AM - 2:00 PM (Sat-Sun)",
+      "weekend_dinner": "5:00 PM - 7:30 PM (Sat-Sun)"
+    },
+    "description": "The University Commons is the main dining hall on campus, offering all-you-can-eat buffet-style service. It features rotating daily menus with international cuisine stations, a salad bar, grill station, and dedicated allergen-free and vegan options.",
+    "contact": "dining@university.edu | (555) 300-4000",
+    "additional_info": [
+      "Accepts meal plan swipes, dining dollars, and credit/debit cards",
+      "Allergen-free station and full vegan/vegetarian options daily",
+      "Nutrition information posted at each station and online",
+      "Meal plan: Unlimited swipes with any residential plan"
+    ]
+  },
+  {
+    "id": "food-002",
+    "name": "Byte Café",
+    "type": "food",
+    "location": "Computer Science Building (CSB), 1st Floor Lobby",
+    "hours": {
+      "monday_friday": "7:30 AM - 6:00 PM",
+      "saturday": "9:00 AM - 3:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "Byte Café is a popular coffee shop and quick-service eatery located in the CS building. It serves espresso drinks, teas, pastries, sandwiches, and grab-and-go meals. Known for strong coffee and a relaxed atmosphere popular with CS and engineering students.",
+    "contact": "bytecafe@university.edu | (555) 300-4010",
+    "additional_info": [
+      "Accepts dining dollars, credit/debit, and mobile payments",
+      "Daily soup and sandwich specials",
+      "Free Wi-Fi with seating for 30",
+      "Student loyalty card: every 10th coffee is free"
+    ]
+  },
+  {
+    "id": "food-003",
+    "name": "Green Leaf Café",
+    "type": "food",
+    "location": "Morrison Main Library, Ground Floor",
+    "hours": {
+      "monday_friday": "8:00 AM - 8:00 PM",
+      "saturday": "10:00 AM - 6:00 PM",
+      "sunday": "12:00 PM - 6:00 PM"
+    },
+    "description": "Green Leaf Café offers healthy and organic food options inside the main library. The menu features smoothies, grain bowls, wraps, salads, and fair-trade coffee. It provides a quieter dining option compared to the main dining hall.",
+    "contact": "greenleaf@university.edu | (555) 300-4020",
+    "additional_info": [
+      "100% organic coffee and tea selection",
+      "Gluten-free and dairy-free options available",
+      "Accepts meal plan dining dollars and all card payments",
+      "Covered beverages only allowed in library reading rooms"
+    ]
+  },
+  {
+    "id": "food-004",
+    "name": "Quad Food Trucks",
+    "type": "food",
+    "location": "Central Quad (outdoor, near fountain)",
+    "hours": {
+      "monday_friday": "11:00 AM - 3:00 PM (weather permitting)",
+      "saturday_sunday": "Closed"
+    },
+    "description": "A rotating selection of 3-5 food trucks parks at the Central Quad during weekday lunch hours. Options typically include tacos, Korean BBQ, wood-fired pizza, and Mediterranean bowls. Vendors rotate weekly and schedules are posted on the campus dining website.",
+    "contact": "dining@university.edu | (555) 300-4000",
+    "additional_info": [
+      "Cash, credit/debit, and most mobile payment apps accepted",
+      "Weekly schedule posted at university.edu/dining/food-trucks",
+      "Outdoor picnic seating available nearby",
+      "Not available during inclement weather"
+    ]
+  },
+  {
+    "id": "food-005",
+    "name": "Night Owl Express",
+    "type": "food",
+    "location": "Student Union, Side Entrance",
+    "hours": {
+      "monday_thursday": "8:00 PM - 1:00 AM",
+      "friday_saturday": "8:00 PM - 2:00 AM",
+      "sunday": "Closed"
+    },
+    "description": "Night Owl Express is a late-night food window serving pizza slices, chicken tenders, mozzarella sticks, fries, and milkshakes. It is a popular late-night option for students studying or coming back from evening activities.",
+    "contact": "dining@university.edu | (555) 300-4000",
+    "additional_info": [
+      "Accepts meal plan late-night swipes, dining dollars, and cards",
+      "Grab-and-go format — no indoor seating",
+      "Busiest between 10 PM and midnight",
+      "Limited menu compared to daytime options"
+    ]
+  },
+  {
+    "id": "admin-001",
+    "name": "Office of the Registrar",
+    "type": "admin",
+    "location": "Administration Hall, Room 120",
+    "hours": {
+      "monday_friday": "8:30 AM - 5:00 PM",
+      "saturday_sunday": "Closed"
+    },
+    "description": "The Office of the Registrar handles course registration, academic transcripts, enrollment verification, and degree audits. Students can submit transcript requests, update personal information, and resolve registration holds at this office.",
+    "contact": "registrar@university.edu | (555) 400-5000",
+    "additional_info": [
+      "Transcript requests: submit online or in person ($10 per official copy)",
+      "Enrollment verification letters: allow 3 business days",
+      "Registration holds must be cleared before enrolling in classes",
+      "Walk-in and appointment-based services available"
+    ]
+  },
+  {
+    "id": "admin-002",
+    "name": "Financial Aid Office",
+    "type": "admin",
+    "location": "Administration Hall, Room 205",
+    "hours": {
+      "monday_friday": "9:00 AM - 4:30 PM",
+      "saturday_sunday": "Closed"
+    },
+    "description": "The Financial Aid Office assists students with scholarships, grants, loans, and work-study programs. Counselors are available for one-on-one appointments to discuss financial aid packages, FAFSA completion, and emergency funding options.",
+    "contact": "finaid@university.edu | (555) 400-5010",
+    "additional_info": [
+      "FAFSA priority deadline: March 1 each year",
+      "Emergency micro-grants available (up to $500) — apply online",
+      "Scholarship search tool available on the financial aid website",
+      "One-on-one counseling by appointment (book online or by phone)"
+    ]
+  },
+  {
+    "id": "admin-003",
+    "name": "Student Services Center",
+    "type": "admin",
+    "location": "Student Union, 2nd Floor, Room 200",
+    "hours": {
+      "monday_friday": "8:00 AM - 6:00 PM",
+      "saturday": "10:00 AM - 2:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "The Student Services Center is a one-stop shop for student ID cards, parking permits, housing assignments, and general campus information. It also provides notary services and campus mail pickup for students living on campus.",
+    "contact": "studentservices@university.edu | (555) 400-5020",
+    "additional_info": [
+      "Student ID replacement: $25 fee, ready same day",
+      "Parking permits: annual ($200) and semester ($120) options",
+      "Housing assignments and room change requests processed here",
+      "Lost and found items held for 30 days"
+    ]
+  },
+  {
+    "id": "admin-004",
+    "name": "International Student Office",
+    "type": "admin",
+    "location": "Administration Hall, Room 310",
+    "hours": {
+      "monday_friday": "9:00 AM - 5:00 PM",
+      "saturday_sunday": "Closed"
+    },
+    "description": "The International Student Office provides immigration advising, visa support, and cultural adjustment resources for international students. Services include I-20 processing, OPT/CPT authorization, and tax filing workshops for non-resident students.",
+    "contact": "international@university.edu | (555) 400-5030",
+    "additional_info": [
+      "I-20 processing: allow 5-7 business days",
+      "OPT and CPT authorization handled here",
+      "Tax filing workshops for international students each spring",
+      "Buddy program pairs new international students with current students"
+    ]
+  },
+  {
+    "id": "admin-005",
+    "name": "Career Development Center",
+    "type": "admin",
+    "location": "Student Union, 3rd Floor, Room 305",
+    "hours": {
+      "monday_friday": "9:00 AM - 5:00 PM",
+      "saturday_sunday": "Closed"
+    },
+    "description": "The Career Development Center offers resume reviews, mock interviews, career counseling, and job/internship postings. It hosts two major career fairs each year (fall and spring) and maintains partnerships with over 200 employers.",
+    "contact": "careers@university.edu | (555) 400-5040",
+    "additional_info": [
+      "Resume and cover letter reviews: drop-in or by appointment",
+      "Mock interviews available with industry professionals",
+      "Career fairs: October (fall) and February (spring)",
+      "Job board: university.edu/careers/jobs — updated weekly"
+    ]
+  },
+  {
+    "id": "acad-001",
+    "name": "Computer Science Department",
+    "type": "academic",
+    "location": "Computer Science Building (CSB), 3rd Floor",
+    "hours": {
+      "main_office": "8:30 AM - 5:00 PM (Mon-Fri)",
+      "faculty_office_hours": "Vary by professor — check department website"
+    },
+    "description": "The Computer Science Department offers BS, MS, and PhD programs. The main office on the 3rd floor handles advising appointments, course petitions, and program information. The department has 35 full-time faculty members specializing in AI, systems, security, and software engineering.",
+    "contact": "cs-department@university.edu | (555) 500-6000",
+    "additional_info": [
+      "Department Chair: Dr. Sarah Chen (schen@university.edu), CSB 320",
+      "Academic advising: schedule at university.edu/cs/advising",
+      "Undergraduate program coordinator: Maria Lopez, CSB 301",
+      "Graduate admissions inquiries: cs-grad@university.edu"
+    ]
+  },
+  {
+    "id": "acad-002",
+    "name": "Engineering Department",
+    "type": "academic",
+    "location": "Engineering Building, 2nd Floor",
+    "hours": {
+      "main_office": "8:30 AM - 5:00 PM (Mon-Fri)",
+      "faculty_office_hours": "Vary by professor — check department website"
+    },
+    "description": "The Engineering Department encompasses electrical, mechanical, and civil engineering programs. The main office coordinates advising, capstone projects, and industry partnerships. The building includes dedicated lab spaces and a student project workshop.",
+    "contact": "engineering@university.edu | (555) 500-6010",
+    "additional_info": [
+      "Department Chair: Dr. James Wright (jwright@university.edu), Eng 220",
+      "Capstone project submissions due at end of spring semester",
+      "Industry partnership coordinator: Tom Baker, Eng 205",
+      "Student chapter of IEEE and ASME meet weekly"
+    ]
+  },
+  {
+    "id": "acad-003",
+    "name": "Mathematics & Statistics Department",
+    "type": "academic",
+    "location": "Science Hall, 4th Floor",
+    "hours": {
+      "main_office": "8:30 AM - 4:30 PM (Mon-Fri)",
+      "faculty_office_hours": "Vary by professor — check department website"
+    },
+    "description": "The Mathematics & Statistics Department offers undergraduate and graduate programs in pure math, applied math, and statistics. The department runs a free Math Tutoring Center on the 1st floor of Science Hall, open to all students.",
+    "contact": "math@university.edu | (555) 500-6020",
+    "additional_info": [
+      "Math Tutoring Center: Science Hall 105, Mon-Thu 10 AM - 4 PM (free)",
+      "Department Chair: Dr. Emily Zhao (ezhao@university.edu), SH 410",
+      "Statistics consulting for research projects available by appointment",
+      "Math placement exam offered during orientation and first week of classes"
+    ]
+  },
+  {
+    "id": "acad-004",
+    "name": "Physics Department",
+    "type": "academic",
+    "location": "Science Hall, 3rd Floor",
+    "hours": {
+      "main_office": "8:30 AM - 4:30 PM (Mon-Fri)",
+      "faculty_office_hours": "Vary by professor — check department website"
+    },
+    "description": "The Physics Department offers BS and MS programs with research strengths in condensed matter, astrophysics, and quantum computing. The department maintains an observatory on the Science Hall rooftop open for public viewing nights once a month.",
+    "contact": "physics@university.edu | (555) 500-6030",
+    "additional_info": [
+      "Observatory public nights: first Friday of each month, 8-10 PM",
+      "Department Chair: Dr. Robert Kim (rkim@university.edu), SH 315",
+      "Physics tutoring available at the Math Tutoring Center",
+      "Undergraduate research positions posted at start of each semester"
+    ]
+  },
+  {
+    "id": "other-001",
+    "name": "Campus Health Center",
+    "type": "admin",
+    "location": "Wellness Building, 1st Floor",
+    "hours": {
+      "monday_friday": "8:00 AM - 6:00 PM",
+      "saturday": "9:00 AM - 1:00 PM",
+      "sunday": "Closed",
+      "after_hours": "Nurse hotline available 24/7 at (555) 600-7099"
+    },
+    "description": "The Campus Health Center provides primary care, immunizations, mental health counseling, and wellness programs for enrolled students. Services are free or low-cost with a valid student ID. Walk-ins are accepted but appointments are recommended.",
+    "contact": "health@university.edu | (555) 600-7000",
+    "additional_info": [
+      "Flu shots and routine immunizations available at no charge",
+      "Mental health counseling: first 6 sessions free per academic year",
+      "After-hours nurse hotline: (555) 600-7099",
+      "Pharmacy on-site for prescription pickup"
+    ]
+  },
+  {
+    "id": "other-002",
+    "name": "Recreation & Fitness Center",
+    "type": "admin",
+    "location": "Athletics Complex, Main Entrance",
+    "hours": {
+      "monday_friday": "6:00 AM - 10:00 PM",
+      "saturday": "8:00 AM - 8:00 PM",
+      "sunday": "9:00 AM - 7:00 PM"
+    },
+    "description": "The Recreation & Fitness Center offers a full gym with weight rooms, cardio equipment, an indoor pool, basketball courts, and group fitness classes. Access is included with student activity fees. Personal training sessions are available for an additional fee.",
+    "contact": "recreation@university.edu | (555) 600-7010",
+    "additional_info": [
+      "Free for all enrolled students (included in activity fees)",
+      "Group fitness classes: yoga, spinning, HIIT, Zumba (see schedule online)",
+      "Indoor pool: lap swim hours posted at the front desk",
+      "Towel and locker rental available",
+      "Personal training: $30/session or $200 for 8-session package"
+    ]
+  },
+  {
+    "id": "other-003",
+    "name": "Campus Bookstore",
+    "type": "admin",
+    "location": "Student Union, 1st Floor (West Wing)",
+    "hours": {
+      "monday_friday": "8:00 AM - 7:00 PM",
+      "saturday": "10:00 AM - 5:00 PM",
+      "sunday": "12:00 PM - 4:00 PM"
+    },
+    "description": "The Campus Bookstore sells textbooks, course materials, school supplies, university apparel, and electronics. It offers textbook rental and buyback programs. An online ordering option is available with in-store pickup.",
+    "contact": "bookstore@university.edu | (555) 600-7020",
+    "additional_info": [
+      "Textbook rental program saves up to 70% vs. buying new",
+      "Buyback program runs during finals week each semester",
+      "Online ordering with in-store pickup: university.edu/bookstore",
+      "10% discount on apparel during homecoming week",
+      "Accepts student account charges, financial aid bookstore vouchers, and all cards"
+    ]
+  },
+  {
+    "id": "other-004",
+    "name": "IT Help Desk",
+    "type": "admin",
+    "location": "Morrison Main Library, 1st Floor, Room 110",
+    "hours": {
+      "monday_friday": "8:00 AM - 8:00 PM",
+      "saturday": "10:00 AM - 4:00 PM",
+      "sunday": "Closed",
+      "online_support": "24/7 via help.university.edu"
+    },
+    "description": "The IT Help Desk assists students with Wi-Fi connectivity, email setup, learning management system (LMS) issues, software installation, and general tech troubleshooting. Remote support is available through the online portal for after-hours assistance.",
+    "contact": "helpdesk@university.edu | (555) 600-7030",
+    "additional_info": [
+      "Free software: Microsoft Office 365, Adobe Creative Cloud, MATLAB (student license)",
+      "Wi-Fi network: connect to 'UniSecure' with your student credentials",
+      "Password resets: self-service at accounts.university.edu or visit in person with ID",
+      "Laptop repair referral program for discounted service at partner shops"
+    ]
+  },
+  {
+    "id": "other-005",
+    "name": "Campus Safety & Security",
+    "type": "admin",
+    "location": "Safety Building (next to Main Gate)",
+    "hours": {
+      "dispatch": "24/7",
+      "office": "8:00 AM - 5:00 PM (Mon-Fri)"
+    },
+    "description": "Campus Safety & Security provides 24/7 patrol, emergency response, escort services, and safety education programs. The SafeWalk program offers after-dark escorts anywhere on campus. Emergency blue-light phones are located throughout campus.",
+    "contact": "security@university.edu | Emergency: (555) 911-0000 | Non-emergency: (555) 600-7040",
+    "additional_info": [
+      "SafeWalk escort service: call (555) 600-7041, available 8 PM - 2 AM",
+      "Emergency blue-light phones located every 200 meters on main paths",
+      "Lost and found: items turned in are held for 30 days",
+      "Safety app: download 'UniSafe' for one-tap emergency contact and GPS location sharing"
+    ]
+  },
+  {
+    "id": "other-006",
+    "name": "Student Counseling & Psychological Services",
+    "type": "admin",
+    "location": "Wellness Building, 2nd Floor",
+    "hours": {
+      "monday_friday": "8:30 AM - 5:00 PM",
+      "saturday_sunday": "Closed",
+      "crisis_line": "24/7 at (555) 600-7050"
+    },
+    "description": "Student Counseling & Psychological Services offers individual counseling, group therapy, crisis intervention, and wellness workshops. All services are confidential and free for enrolled students. No referral is needed — students can schedule directly.",
+    "contact": "counseling@university.edu | (555) 600-7050",
+    "additional_info": [
+      "First 6 individual sessions free per academic year",
+      "Crisis walk-in hours: Mon-Fri 1-3 PM (no appointment needed)",
+      "Group therapy options: anxiety, stress management, grief support",
+      "24/7 crisis line: (555) 600-7050",
+      "Self-help resources available at university.edu/counseling"
+    ]
+  }
+]
