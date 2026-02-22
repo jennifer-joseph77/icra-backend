@@ -23,7 +23,7 @@ CHROMA_COLLECTION_NAME = "campus_resources"
 CAMPUS_DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "campus_data.json")
 
 # --- Retrieval ---
-TOP_K_RESULTS = 3  # Number of documents to retrieve per query
+TOP_K_RESULTS = 5  # Number of documents to retrieve per query
 
 # --- Embedding Model ---
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # sentence-transformers model (local, free)

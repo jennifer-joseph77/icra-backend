@@ -1,513 +1,536 @@
 [
   {
-    "id": "lib-001",
-    "name": "Morrison Main Library",
-    "type": "library",
-    "location": "Central Quad, Building A",
+    "id": "tile-001",
+    "name": "My Academics",
+    "type": "homepage_tile",
+    "location": "Student Homepage > My Academics Tile",
     "hours": {
-      "monday_friday": "7:00 AM - 11:00 PM",
-      "saturday": "9:00 AM - 9:00 PM",
-      "sunday": "10:00 AM - 10:00 PM"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Morrison Main Library is the largest library on campus with over 500,000 volumes and 200 study seats. It houses the general collection, periodicals archive, and a dedicated quiet study zone on the third floor. The library also offers interlibrary loan services and research consultation appointments.",
-    "contact": "mainlibrary@university.edu | (555) 100-2000",
+    "description": "The My Academics tile is the primary hub for all academic activities. It provides access to course search, academic planning, enrollment management, and academic progress tracking. It contains four main tabs: Search, Plan, Enroll, and My Academics.",
+    "contact": "N/A",
     "additional_info": [
-      "Free printing: 50 pages per semester per student",
-      "Group study rooms can be reserved online up to 7 days in advance",
-      "24-hour access during finals week (last two weeks of each semester)",
-      "Laptop lending program available at the front desk"
+      "Use the 'go to ...' dropdown to jump between: Account Inquiry, My Academics, Personal Data Summary, Student Center, and User Preferences",
+      "The Search tab requires at least 2 search criteria to display results",
+      "Class search defaults to Birla Institute of Tech & Sci as the institution",
+      "My Planner allows moving selected courses to a specific term"
     ]
   },
   {
-    "id": "lib-002",
-    "name": "Chen Science & Engineering Library",
-    "type": "library",
-    "location": "Engineering Quad, Building E, 2nd Floor",
+    "id": "tile-002",
+    "name": "Registration",
+    "type": "homepage_tile",
+    "location": "Student Homepage > Registration Tile",
     "hours": {
-      "monday_friday": "8:00 AM - 9:00 PM",
-      "saturday": "10:00 AM - 6:00 PM",
-      "sunday": "12:00 PM - 8:00 PM"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Chen Science & Engineering Library specializes in STEM resources including technical journals, conference proceedings, and digital databases like IEEE Xplore and ACM Digital Library. It has 80 study seats and 20 computer workstations with specialized software.",
-    "contact": "scilib@university.edu | (555) 100-2010",
+    "description": "The Registration tile provides all tools needed to manage course registration for a given semester. It shows your current class schedule and allows you to add/manage classes, view academic requirements, and update your work location and exam center.",
+    "contact": "N/A",
     "additional_info": [
-      "Access to IEEE Xplore, ACM Digital Library, and SpringerLink",
-      "3D printing service available (submit jobs at the help desk)",
-      "Technical writing workshops held every Wednesday at 3 PM",
-      "Quiet study zone on the mezzanine level"
+      "Enrollment access is controlled by the university and may not always be available",
+      "The shopping cart allows pre-selecting classes before enrollment opens",
+      "Work Location & Exam Center must be updated each semester before registration closes"
     ]
   },
   {
-    "id": "lib-003",
-    "name": "Harper Digital Media Library",
-    "type": "library",
-    "location": "Arts Building, Room 150",
+    "id": "tile-003",
+    "name": "My Finance",
+    "type": "homepage_tile",
+    "location": "Student Homepage > My Finance Tile",
     "hours": {
-      "monday_friday": "9:00 AM - 7:00 PM",
-      "saturday": "10:00 AM - 5:00 PM",
-      "sunday": "Closed"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Harper Digital Media Library provides access to multimedia resources, streaming databases, and creative software. It includes audio/video editing suites, a podcast recording booth, and a digital archives collection spanning campus history.",
-    "contact": "medialib@university.edu | (555) 100-2020",
+    "description": "The My Finance tile provides access to all fee-related and financial functions. Students can make online payments, view their account balance and transaction history, and check monthly deduction schedules.",
+    "contact": "N/A",
     "additional_info": [
-      "Four audio/video editing suites available by reservation",
-      "Podcast recording booth (1-hour slots, book online)",
-      "Access to Kanopy, Criterion, and campus digital archives",
-      "Equipment checkout: cameras, microphones, tripods"
+      "Online payments are processed through the Payment Gateway (Full Payment option)",
+      "Transaction status can be refreshed manually using the 'Refresh Status' button; automatic updates may take up to 24 hours",
+      "Charges that cannot be paid online must be settled at the Cashier's office or mailed separately",
+      "Payment history shows BITS Transaction Number, amount, payment status, date/time, and bank reference number"
     ]
   },
   {
-    "id": "lab-001",
-    "name": "Turing Computer Science Lab",
-    "type": "lab",
-    "location": "Computer Science Building (CSB), Room 210",
+    "id": "tile-004",
+    "name": "Demographic Details",
+    "type": "homepage_tile",
+    "location": "Student Homepage > Demographic Details Tile",
     "hours": {
-      "monday_friday": "7:00 AM - 10:00 PM",
-      "saturday": "9:00 AM - 6:00 PM",
-      "sunday": "12:00 PM - 8:00 PM"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Turing CS Lab is the primary computer lab for computer science students. It has 60 high-performance workstations running Ubuntu Linux and Windows dual-boot, with development tools including VS Code, IntelliJ, and PyCharm pre-installed. The lab also has a dedicated GPU cluster section for machine learning coursework.",
-    "contact": "cslab@university.edu | (555) 200-3000",
+    "description": "The Demographic Details tile provides access to personal and demographic information. It opens the student profile with four main tabs covering personal information, security, credentials, and participation.",
+    "contact": "N/A",
     "additional_info": [
-      "Access requires valid student ID and CS department enrollment",
-      "GPU cluster (8x NVIDIA RTX 4090) available for ML coursework — sign up with TA",
-      "Lab monitors on duty during all open hours",
-      "Printing available: black & white and color (charges apply for color)"
+      "Personal Information sub-tab displays: Addresses, Names, Phone Numbers, Email Addresses, Internet Addresses, Emergency Contacts, Demographic Information",
+      "National Identification Number section supports PAN and other country-specific ID types",
+      "Citizenship and visa/permit information can be recorded here"
     ]
   },
   {
-    "id": "lab-002",
-    "name": "Franklin Engineering Lab",
-    "type": "lab",
-    "location": "Engineering Building, Room 315",
+    "id": "tile-005",
+    "name": "Student Center",
+    "type": "homepage_tile",
+    "location": "Student Homepage > Student Center Tile",
     "hours": {
-      "monday_friday": "8:00 AM - 9:00 PM",
-      "saturday": "10:00 AM - 5:00 PM",
-      "sunday": "Closed"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Franklin Engineering Lab provides 40 workstations equipped with engineering software including MATLAB, SolidWorks, AutoCAD, and ANSYS. The lab supports coursework for electrical, mechanical, and civil engineering programs and includes a hardware prototyping section.",
-    "contact": "englab@university.edu | (555) 200-3010",
+    "description": "The Student Center is a comprehensive dashboard that consolidates all student-facing academic, financial, and personal information in one place. It is divided into three main sections: Academics, Finances, and Personal Information/Profile.",
+    "contact": "N/A",
     "additional_info": [
-      "MATLAB, SolidWorks, AutoCAD, ANSYS, and LabVIEW installed on all machines",
-      "Hardware prototyping bench with oscilloscopes and soldering stations",
-      "Access requires engineering department enrollment",
-      "TA help sessions: Tuesdays and Thursdays 4-6 PM"
+      "Academic Structure Report generates a report of the student's academic program structure",
+      "Performance Sheet provides a downloadable or viewable academic performance summary",
+      "Fees Receipt allows students to download official fee receipts",
+      "Fee Demand shows the fee demand note issued by the university",
+      "Open Enrollment Dates link shows the upcoming registration window",
+      "Milestones section displays program milestones and their completion status",
+      "To-Do List section shows pending action items assigned to the student"
     ]
   },
   {
-    "id": "lab-003",
-    "name": "Innovation Makerspace",
-    "type": "lab",
-    "location": "Student Union, Lower Level, Room B05",
+    "id": "nav-001",
+    "name": "Self Service > Student Pre Registration",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Student Pre Registration",
     "hours": {
-      "monday_friday": "10:00 AM - 8:00 PM",
-      "saturday": "11:00 AM - 5:00 PM",
-      "sunday": "Closed"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Innovation Makerspace is open to all students and provides access to 3D printers, laser cutters, CNC machines, and electronics workbenches. Staff members offer training sessions for equipment use. It serves both academic projects and personal creative work.",
-    "contact": "makerspace@university.edu | (555) 200-3020",
+    "description": "Allows students to complete pre-registration steps required before the main enrollment window opens.",
+    "contact": "N/A",
     "additional_info": [
-      "Open to all students regardless of major",
-      "Mandatory safety orientation required before first use",
-      "3D printers: 4x Prusa MK4, 2x resin printers",
-      "Laser cutter, CNC router, and vinyl cutter available",
-      "Materials available for purchase at cost"
+      "Accessible via NavBar > Navigator > Self Service"
     ]
   },
   {
-    "id": "lab-004",
-    "name": "Data Science & AI Research Lab",
-    "type": "lab",
-    "location": "Computer Science Building (CSB), Room 405",
+    "id": "nav-002",
+    "name": "Self Service > Class Search / Browse Catalog",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Class Search / Browse Catalog",
     "hours": {
-      "monday_friday": "9:00 AM - 6:00 PM",
-      "saturday": "By appointment only",
-      "sunday": "Closed"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The Data Science & AI Research Lab is a graduate-level facility for advanced research in machine learning, natural language processing, and computer vision. It houses a dedicated compute cluster and is supervised by faculty from the CS and Statistics departments.",
-    "contact": "dslab@university.edu | (555) 200-3030",
+    "description": "Search for available classes across all subjects, or browse the full course catalog. Allows filtering by subject, course number, semester, career, and open/closed status.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-003",
+    "name": "Self Service > Academic Planning",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Academic Planning",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Tools to plan your academic journey by managing your course planner, shopping cart, and course history.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-004",
+    "name": "Self Service > Enrollment",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Enrollment",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "A comprehensive section for managing all enrollment-related activities including class schedules, adding/editing classes, viewing grades, exams, and milestones.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-005",
+    "name": "Self Service > Campus Finances",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Campus Finances",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "A comprehensive financial management section covering fee payments, account summaries, bank accounts, and financial aid promissory notes.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-006",
+    "name": "Self Service > Campus Personal Information",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Campus Personal Information",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "A full suite of personal information management pages covering contact details, credentials, preferences, and identity information.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-007",
+    "name": "Self Service > Academic Records",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Academic Records",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Access academic records, transfer views, enrollment verification, and links to the Learning Management System.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-008",
+    "name": "Self Service > Degree Progress / Graduation",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Degree Progress/Graduation",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Track your progress toward degree completion and manage graduation applications.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-009",
+    "name": "Self Service > Admissions",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Admissions",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Manage admissions-related applications, specifically for minor program admissions.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-010",
+    "name": "Self Service > Student Admission",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Student Admission",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "For prospective or newly admitted students to manage their admission process.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-011",
+    "name": "Self Service > Involvement",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Involvement",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Track your involvement in university activities and explore giving opportunities.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-012",
+    "name": "Self Service > Faculty Center",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Faculty Center",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Faculty-specific tools for managing Ph.D. students and approving thesis and dissertation requests. Also accessible by students enrolled in Ph.D. programs.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-013",
+    "name": "Self Service > Program Enrollment",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Program Enrollment",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Manage program-level enrollment agreements and terms.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-014",
+    "name": "Self Service > Important Notices",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Important Notices",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View important notices and announcements published by the university for students. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-015",
+    "name": "Self Service > Student Registration Confirmation",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Student_Reg_confirmation",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View or download your official registration confirmation document for the current semester. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-016",
+    "name": "Self Service > Student Registration Details",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Student Registration Details",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View comprehensive registration details for your current or past semesters. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-017",
+    "name": "Self Service > Monthly Deduction Details",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Monthly Deduction Details",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View the month-by-month fee deduction schedule applicable to your account. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-018",
+    "name": "Self Service > MoU Proposal",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > MoU Proposal",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Submit or view a Memorandum of Understanding (MoU) proposal, relevant for sponsored or company-linked students. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-019",
+    "name": "Self Service > Minor Application",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Minor Application",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Apply for a Minor program from within the Self Service menu. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-020",
+    "name": "Self Service > Specialization Details",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Specialization Details",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View the details of your registered specialization within the degree program. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-021",
+    "name": "Self Service > Approve/Deny Ph.D. Thesis Req",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Self Service > Approve/Deny Ph.D Thesis Req",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Approve or deny Ph.D. thesis submission requests. Primarily a faculty/supervisor function accessible from the student portal. Opens in a new window.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-022",
+    "name": "Institute Level Reports > MOU Repository",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Institute Level Reports > MOU Repository",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Access the repository of MoUs (Memoranda of Understanding) at the institute level.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-023",
+    "name": "Practice School > Review Offshoot Scores",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Practice School > Review Offshoot Scores",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Review scores from Practice School offshoot evaluations. Relevant to students on Practice School (PS) stations.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-024",
+    "name": "Records and Enrollment",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Records and Enrollment",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Administrative-level records and enrollment processing tools.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-025",
+    "name": "Student Financials",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Student Financials",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "Financial reporting and charge management tools.",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "nav-026",
+    "name": "Worklist",
+    "type": "navigator_menu_item",
+    "location": "NavBar > Navigator > Worklist",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "View pending workflow items assigned to you that require action (approvals, reviews, or tasks).",
+    "contact": "N/A",
+    "additional_info": []
+  },
+  {
+    "id": "sys-001",
+    "name": "Global Search",
+    "type": "system_feature",
+    "location": "Top Navigation Bar (all pages)",
+    "hours": {
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
+    },
+    "description": "A global search bar available on every page that allows students to quickly find pages, features, or content across the SIS portal. Search can be scoped to 'All' or narrowed to 'Navigator' items.",
+    "contact": "N/A",
     "additional_info": [
-      "Access restricted to graduate students and approved undergrad researchers",
-      "Dedicated compute cluster: 4 nodes with A100 GPUs",
-      "Weekly research seminar: Fridays at 2 PM",
-      "Contact Dr. Patel (rpatel@university.edu) for access requests"
+      "Accessible via the magnifying glass icon in the top navigation bar",
+      "Supports two search scopes: All and Navigator"
     ]
   },
   {
-    "id": "food-001",
-    "name": "University Commons Dining Hall",
-    "type": "food",
-    "location": "Student Union, 1st Floor",
+    "id": "sys-002",
+    "name": "Notifications",
+    "type": "system_feature",
+    "location": "Top Navigation Bar (all pages)",
     "hours": {
-      "breakfast": "7:00 AM - 10:00 AM (Mon-Fri)",
-      "lunch": "11:00 AM - 2:30 PM (Mon-Fri)",
-      "dinner": "5:00 PM - 8:00 PM (Mon-Fri)",
-      "weekend_brunch": "10:00 AM - 2:00 PM (Sat-Sun)",
-      "weekend_dinner": "5:00 PM - 7:30 PM (Sat-Sun)"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "The University Commons is the main dining hall on campus, offering all-you-can-eat buffet-style service. It features rotating daily menus with international cuisine stations, a salad bar, grill station, and dedicated allergen-free and vegan options.",
-    "contact": "dining@university.edu | (555) 300-4000",
+    "description": "A notification center that displays system alerts, academic reminders, and action items from the university. Accessible via the bell icon in the top navigation bar.",
+    "contact": "N/A",
     "additional_info": [
-      "Accepts meal plan swipes, dining dollars, and credit/debit cards",
-      "Allergen-free station and full vegan/vegetarian options daily",
-      "Nutrition information posted at each station and online",
-      "Meal plan: Unlimited swipes with any residential plan"
+      "Accessible via the bell icon in the top navigation bar"
     ]
   },
   {
-    "id": "food-002",
-    "name": "Byte Café",
-    "type": "food",
-    "location": "Computer Science Building (CSB), 1st Floor Lobby",
+    "id": "sys-003",
+    "name": "Actions Menu",
+    "type": "system_feature",
+    "location": "Top Navigation Bar (all pages)",
     "hours": {
-      "monday_friday": "7:30 AM - 6:00 PM",
-      "saturday": "9:00 AM - 3:00 PM",
-      "sunday": "Closed"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "Byte Café is a popular coffee shop and quick-service eatery located in the CS building. It serves espresso drinks, teas, pastries, sandwiches, and grab-and-go meals. Known for strong coffee and a relaxed atmosphere popular with CS and engineering students.",
-    "contact": "bytecafe@university.edu | (555) 300-4010",
+    "description": "A contextual actions menu (three-dot icon) that provides page-specific actions such as: New Window, Personalize Homepage, Add to Homepage, Add to NavBar, Add to Favorites, Help, and Sign Out.",
+    "contact": "N/A",
     "additional_info": [
-      "Accepts dining dollars, credit/debit, and mobile payments",
-      "Daily soup and sandwich specials",
-      "Free Wi-Fi with seating for 30",
-      "Student loyalty card: every 10th coffee is free"
+      "Sign Out: Logs out of the SIS portal",
+      "New Window: Opens the current page in a new browser window",
+      "Help: Links to PeopleSoft Online Help documentation"
     ]
   },
   {
-    "id": "food-003",
-    "name": "Green Leaf Café",
-    "type": "food",
-    "location": "Morrison Main Library, Ground Floor",
+    "id": "sys-004",
+    "name": "NavBar",
+    "type": "system_feature",
+    "location": "Top Navigation Bar (all pages)",
     "hours": {
-      "monday_friday": "8:00 AM - 8:00 PM",
-      "saturday": "10:00 AM - 6:00 PM",
-      "sunday": "12:00 PM - 6:00 PM"
+      "monday_friday": "N/A",
+      "saturday": "N/A",
+      "sunday": "N/A"
     },
-    "description": "Green Leaf Café offers healthy and organic food options inside the main library. The menu features smoothies, grain bowls, wraps, salads, and fair-trade coffee. It provides a quieter dining option compared to the main dining hall.",
-    "contact": "greenleaf@university.edu | (555) 300-4020",
+    "description": "The Navigation Bar provides three access points: My Favorites (starred/bookmarked pages), Navigator (full hierarchical menu of all portal sections), and Classic Home (legacy PeopleSoft home page view).",
+    "contact": "N/A",
     "additional_info": [
-      "100% organic coffee and tea selection",
-      "Gluten-free and dairy-free options available",
-      "Accepts meal plan dining dollars and all card payments",
-      "Covered beverages only allowed in library reading rooms"
-    ]
-  },
-  {
-    "id": "food-004",
-    "name": "Quad Food Trucks",
-    "type": "food",
-    "location": "Central Quad (outdoor, near fountain)",
-    "hours": {
-      "monday_friday": "11:00 AM - 3:00 PM (weather permitting)",
-      "saturday_sunday": "Closed"
-    },
-    "description": "A rotating selection of 3-5 food trucks parks at the Central Quad during weekday lunch hours. Options typically include tacos, Korean BBQ, wood-fired pizza, and Mediterranean bowls. Vendors rotate weekly and schedules are posted on the campus dining website.",
-    "contact": "dining@university.edu | (555) 300-4000",
-    "additional_info": [
-      "Cash, credit/debit, and most mobile payment apps accepted",
-      "Weekly schedule posted at university.edu/dining/food-trucks",
-      "Outdoor picnic seating available nearby",
-      "Not available during inclement weather"
-    ]
-  },
-  {
-    "id": "food-005",
-    "name": "Night Owl Express",
-    "type": "food",
-    "location": "Student Union, Side Entrance",
-    "hours": {
-      "monday_thursday": "8:00 PM - 1:00 AM",
-      "friday_saturday": "8:00 PM - 2:00 AM",
-      "sunday": "Closed"
-    },
-    "description": "Night Owl Express is a late-night food window serving pizza slices, chicken tenders, mozzarella sticks, fries, and milkshakes. It is a popular late-night option for students studying or coming back from evening activities.",
-    "contact": "dining@university.edu | (555) 300-4000",
-    "additional_info": [
-      "Accepts meal plan late-night swipes, dining dollars, and cards",
-      "Grab-and-go format — no indoor seating",
-      "Busiest between 10 PM and midnight",
-      "Limited menu compared to daytime options"
-    ]
-  },
-  {
-    "id": "admin-001",
-    "name": "Office of the Registrar",
-    "type": "admin",
-    "location": "Administration Hall, Room 120",
-    "hours": {
-      "monday_friday": "8:30 AM - 5:00 PM",
-      "saturday_sunday": "Closed"
-    },
-    "description": "The Office of the Registrar handles course registration, academic transcripts, enrollment verification, and degree audits. Students can submit transcript requests, update personal information, and resolve registration holds at this office.",
-    "contact": "registrar@university.edu | (555) 400-5000",
-    "additional_info": [
-      "Transcript requests: submit online or in person ($10 per official copy)",
-      "Enrollment verification letters: allow 3 business days",
-      "Registration holds must be cleared before enrolling in classes",
-      "Walk-in and appointment-based services available"
-    ]
-  },
-  {
-    "id": "admin-002",
-    "name": "Financial Aid Office",
-    "type": "admin",
-    "location": "Administration Hall, Room 205",
-    "hours": {
-      "monday_friday": "9:00 AM - 4:30 PM",
-      "saturday_sunday": "Closed"
-    },
-    "description": "The Financial Aid Office assists students with scholarships, grants, loans, and work-study programs. Counselors are available for one-on-one appointments to discuss financial aid packages, FAFSA completion, and emergency funding options.",
-    "contact": "finaid@university.edu | (555) 400-5010",
-    "additional_info": [
-      "FAFSA priority deadline: March 1 each year",
-      "Emergency micro-grants available (up to $500) — apply online",
-      "Scholarship search tool available on the financial aid website",
-      "One-on-one counseling by appointment (book online or by phone)"
-    ]
-  },
-  {
-    "id": "admin-003",
-    "name": "Student Services Center",
-    "type": "admin",
-    "location": "Student Union, 2nd Floor, Room 200",
-    "hours": {
-      "monday_friday": "8:00 AM - 6:00 PM",
-      "saturday": "10:00 AM - 2:00 PM",
-      "sunday": "Closed"
-    },
-    "description": "The Student Services Center is a one-stop shop for student ID cards, parking permits, housing assignments, and general campus information. It also provides notary services and campus mail pickup for students living on campus.",
-    "contact": "studentservices@university.edu | (555) 400-5020",
-    "additional_info": [
-      "Student ID replacement: $25 fee, ready same day",
-      "Parking permits: annual ($200) and semester ($120) options",
-      "Housing assignments and room change requests processed here",
-      "Lost and found items held for 30 days"
-    ]
-  },
-  {
-    "id": "admin-004",
-    "name": "International Student Office",
-    "type": "admin",
-    "location": "Administration Hall, Room 310",
-    "hours": {
-      "monday_friday": "9:00 AM - 5:00 PM",
-      "saturday_sunday": "Closed"
-    },
-    "description": "The International Student Office provides immigration advising, visa support, and cultural adjustment resources for international students. Services include I-20 processing, OPT/CPT authorization, and tax filing workshops for non-resident students.",
-    "contact": "international@university.edu | (555) 400-5030",
-    "additional_info": [
-      "I-20 processing: allow 5-7 business days",
-      "OPT and CPT authorization handled here",
-      "Tax filing workshops for international students each spring",
-      "Buddy program pairs new international students with current students"
-    ]
-  },
-  {
-    "id": "admin-005",
-    "name": "Career Development Center",
-    "type": "admin",
-    "location": "Student Union, 3rd Floor, Room 305",
-    "hours": {
-      "monday_friday": "9:00 AM - 5:00 PM",
-      "saturday_sunday": "Closed"
-    },
-    "description": "The Career Development Center offers resume reviews, mock interviews, career counseling, and job/internship postings. It hosts two major career fairs each year (fall and spring) and maintains partnerships with over 200 employers.",
-    "contact": "careers@university.edu | (555) 400-5040",
-    "additional_info": [
-      "Resume and cover letter reviews: drop-in or by appointment",
-      "Mock interviews available with industry professionals",
-      "Career fairs: October (fall) and February (spring)",
-      "Job board: university.edu/careers/jobs — updated weekly"
-    ]
-  },
-  {
-    "id": "acad-001",
-    "name": "Computer Science Department",
-    "type": "academic",
-    "location": "Computer Science Building (CSB), 3rd Floor",
-    "hours": {
-      "main_office": "8:30 AM - 5:00 PM (Mon-Fri)",
-      "faculty_office_hours": "Vary by professor — check department website"
-    },
-    "description": "The Computer Science Department offers BS, MS, and PhD programs. The main office on the 3rd floor handles advising appointments, course petitions, and program information. The department has 35 full-time faculty members specializing in AI, systems, security, and software engineering.",
-    "contact": "cs-department@university.edu | (555) 500-6000",
-    "additional_info": [
-      "Department Chair: Dr. Sarah Chen (schen@university.edu), CSB 320",
-      "Academic advising: schedule at university.edu/cs/advising",
-      "Undergraduate program coordinator: Maria Lopez, CSB 301",
-      "Graduate admissions inquiries: cs-grad@university.edu"
-    ]
-  },
-  {
-    "id": "acad-002",
-    "name": "Engineering Department",
-    "type": "academic",
-    "location": "Engineering Building, 2nd Floor",
-    "hours": {
-      "main_office": "8:30 AM - 5:00 PM (Mon-Fri)",
-      "faculty_office_hours": "Vary by professor — check department website"
-    },
-    "description": "The Engineering Department encompasses electrical, mechanical, and civil engineering programs. The main office coordinates advising, capstone projects, and industry partnerships. The building includes dedicated lab spaces and a student project workshop.",
-    "contact": "engineering@university.edu | (555) 500-6010",
-    "additional_info": [
-      "Department Chair: Dr. James Wright (jwright@university.edu), Eng 220",
-      "Capstone project submissions due at end of spring semester",
-      "Industry partnership coordinator: Tom Baker, Eng 205",
-      "Student chapter of IEEE and ASME meet weekly"
-    ]
-  },
-  {
-    "id": "acad-003",
-    "name": "Mathematics & Statistics Department",
-    "type": "academic",
-    "location": "Science Hall, 4th Floor",
-    "hours": {
-      "main_office": "8:30 AM - 4:30 PM (Mon-Fri)",
-      "faculty_office_hours": "Vary by professor — check department website"
-    },
-    "description": "The Mathematics & Statistics Department offers undergraduate and graduate programs in pure math, applied math, and statistics. The department runs a free Math Tutoring Center on the 1st floor of Science Hall, open to all students.",
-    "contact": "math@university.edu | (555) 500-6020",
-    "additional_info": [
-      "Math Tutoring Center: Science Hall 105, Mon-Thu 10 AM - 4 PM (free)",
-      "Department Chair: Dr. Emily Zhao (ezhao@university.edu), SH 410",
-      "Statistics consulting for research projects available by appointment",
-      "Math placement exam offered during orientation and first week of classes"
-    ]
-  },
-  {
-    "id": "acad-004",
-    "name": "Physics Department",
-    "type": "academic",
-    "location": "Science Hall, 3rd Floor",
-    "hours": {
-      "main_office": "8:30 AM - 4:30 PM (Mon-Fri)",
-      "faculty_office_hours": "Vary by professor — check department website"
-    },
-    "description": "The Physics Department offers BS and MS programs with research strengths in condensed matter, astrophysics, and quantum computing. The department maintains an observatory on the Science Hall rooftop open for public viewing nights once a month.",
-    "contact": "physics@university.edu | (555) 500-6030",
-    "additional_info": [
-      "Observatory public nights: first Friday of each month, 8-10 PM",
-      "Department Chair: Dr. Robert Kim (rkim@university.edu), SH 315",
-      "Physics tutoring available at the Math Tutoring Center",
-      "Undergraduate research positions posted at start of each semester"
-    ]
-  },
-  {
-    "id": "other-001",
-    "name": "Campus Health Center",
-    "type": "admin",
-    "location": "Wellness Building, 1st Floor",
-    "hours": {
-      "monday_friday": "8:00 AM - 6:00 PM",
-      "saturday": "9:00 AM - 1:00 PM",
-      "sunday": "Closed",
-      "after_hours": "Nurse hotline available 24/7 at (555) 600-7099"
-    },
-    "description": "The Campus Health Center provides primary care, immunizations, mental health counseling, and wellness programs for enrolled students. Services are free or low-cost with a valid student ID. Walk-ins are accepted but appointments are recommended.",
-    "contact": "health@university.edu | (555) 600-7000",
-    "additional_info": [
-      "Flu shots and routine immunizations available at no charge",
-      "Mental health counseling: first 6 sessions free per academic year",
-      "After-hours nurse hotline: (555) 600-7099",
-      "Pharmacy on-site for prescription pickup"
-    ]
-  },
-  {
-    "id": "other-002",
-    "name": "Recreation & Fitness Center",
-    "type": "admin",
-    "location": "Athletics Complex, Main Entrance",
-    "hours": {
-      "monday_friday": "6:00 AM - 10:00 PM",
-      "saturday": "8:00 AM - 8:00 PM",
-      "sunday": "9:00 AM - 7:00 PM"
-    },
-    "description": "The Recreation & Fitness Center offers a full gym with weight rooms, cardio equipment, an indoor pool, basketball courts, and group fitness classes. Access is included with student activity fees. Personal training sessions are available for an additional fee.",
-    "contact": "recreation@university.edu | (555) 600-7010",
-    "additional_info": [
-      "Free for all enrolled students (included in activity fees)",
-      "Group fitness classes: yoga, spinning, HIIT, Zumba (see schedule online)",
-      "Indoor pool: lap swim hours posted at the front desk",
-      "Towel and locker rental available",
-      "Personal training: $30/session or $200 for 8-session package"
-    ]
-  },
-  {
-    "id": "other-003",
-    "name": "Campus Bookstore",
-    "type": "admin",
-    "location": "Student Union, 1st Floor (West Wing)",
-    "hours": {
-      "monday_friday": "8:00 AM - 7:00 PM",
-      "saturday": "10:00 AM - 5:00 PM",
-      "sunday": "12:00 PM - 4:00 PM"
-    },
-    "description": "The Campus Bookstore sells textbooks, course materials, school supplies, university apparel, and electronics. It offers textbook rental and buyback programs. An online ordering option is available with in-store pickup.",
-    "contact": "bookstore@university.edu | (555) 600-7020",
-    "additional_info": [
-      "Textbook rental program saves up to 70% vs. buying new",
-      "Buyback program runs during finals week each semester",
-      "Online ordering with in-store pickup: university.edu/bookstore",
-      "10% discount on apparel during homecoming week",
-      "Accepts student account charges, financial aid bookstore vouchers, and all cards"
-    ]
-  },
-  {
-    "id": "other-004",
-    "name": "IT Help Desk",
-    "type": "admin",
-    "location": "Morrison Main Library, 1st Floor, Room 110",
-    "hours": {
-      "monday_friday": "8:00 AM - 8:00 PM",
-      "saturday": "10:00 AM - 4:00 PM",
-      "sunday": "Closed",
-      "online_support": "24/7 via help.university.edu"
-    },
-    "description": "The IT Help Desk assists students with Wi-Fi connectivity, email setup, learning management system (LMS) issues, software installation, and general tech troubleshooting. Remote support is available through the online portal for after-hours assistance.",
-    "contact": "helpdesk@university.edu | (555) 600-7030",
-    "additional_info": [
-      "Free software: Microsoft Office 365, Adobe Creative Cloud, MATLAB (student license)",
-      "Wi-Fi network: connect to 'UniSecure' with your student credentials",
-      "Password resets: self-service at accounts.university.edu or visit in person with ID",
-      "Laptop repair referral program for discounted service at partner shops"
-    ]
-  },
-  {
-    "id": "other-005",
-    "name": "Campus Safety & Security",
-    "type": "admin",
-    "location": "Safety Building (next to Main Gate)",
-    "hours": {
-      "dispatch": "24/7",
-      "office": "8:00 AM - 5:00 PM (Mon-Fri)"
-    },
-    "description": "Campus Safety & Security provides 24/7 patrol, emergency response, escort services, and safety education programs. The SafeWalk program offers after-dark escorts anywhere on campus. Emergency blue-light phones are located throughout campus.",
-    "contact": "security@university.edu | Emergency: (555) 911-0000 | Non-emergency: (555) 600-7040",
-    "additional_info": [
-      "SafeWalk escort service: call (555) 600-7041, available 8 PM - 2 AM",
-      "Emergency blue-light phones located every 200 meters on main paths",
-      "Lost and found: items turned in are held for 30 days",
-      "Safety app: download 'UniSafe' for one-tap emergency contact and GPS location sharing"
-    ]
-  },
-  {
-    "id": "other-006",
-    "name": "Student Counseling & Psychological Services",
-    "type": "admin",
-    "location": "Wellness Building, 2nd Floor",
-    "hours": {
-      "monday_friday": "8:30 AM - 5:00 PM",
-      "saturday_sunday": "Closed",
-      "crisis_line": "24/7 at (555) 600-7050"
-    },
-    "description": "Student Counseling & Psychological Services offers individual counseling, group therapy, crisis intervention, and wellness workshops. All services are confidential and free for enrolled students. No referral is needed — students can schedule directly.",
-    "contact": "counseling@university.edu | (555) 600-7050",
-    "additional_info": [
-      "First 6 individual sessions free per academic year",
-      "Crisis walk-in hours: Mon-Fri 1-3 PM (no appointment needed)",
-      "Group therapy options: anxiety, stress management, grief support",
-      "24/7 crisis line: (555) 600-7050",
-      "Self-help resources available at university.edu/counseling"
+      "My Favorites: Quickly access pages you have bookmarked",
+      "Navigator: Browse the full portal menu tree organized by category",
+      "Classic Home: Access the older PeopleSoft-style home page",
+      "Change My Password: Available from Navigator root",
+      "My Personalizations: Customize portal appearance and behavior",
+      "My Feeds: Access RSS/Atom feeds if configured"
     ]
   }
 ]
