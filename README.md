@@ -65,7 +65,17 @@ Edit `.env` and replace `your-api-key-here` with your actual key:
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-### 5. Run the demo
+### 5. Run the server
+
+```bash
+uvicorn server:app --reload
+```
+
+Open [http://localhost:8000](http://localhost:8000) in your browser to use the web interface.
+
+The API is also available directly at `POST /ask` (see interactive docs at [http://localhost:8000/docs](http://localhost:8000/docs)).
+
+### Alternative: Run the terminal demo
 
 ```bash
 python main.py
@@ -102,7 +112,8 @@ This makes the RAG pipeline transparent: you can see which documents were retrie
 
 ```
 icra-backend/
-├── main.py              # Terminal interface and main loop
+├── server.py            # FastAPI server (web UI + /ask API)
+├── main.py              # Terminal interface (alternative)
 ├── rag_pipeline.py      # Retrieve → Augment → Generate
 ├── knowledge_base.py    # JSON loader and ChromaDB indexing
 ├── config.py            # Settings and environment variables
@@ -144,7 +155,7 @@ Settings are in `config.py`:
 
 ## Next Steps (Week 2)
 
-- [ ] Web interface with Flask or FastAPI
+- [x] Web interface with FastAPI
 - [ ] Conversation history / multi-turn context
 - [ ] Admin interface to add/edit knowledge base entries
 - [ ] Evaluation metrics (retrieval precision, answer quality)
