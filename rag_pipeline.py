@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 
 import anthropic
 import chromadb
+import openai
 
 import config
 from knowledge_base import query_knowledge_base
@@ -59,6 +60,68 @@ def build_context_block(results: dict) -> str:
             f"{doc}\n"
         )
     return "\n".join(blocks)
+
+
+def _call_llm(user_message: str) -> str:
+    """Dispatch the LLM call to the configured provider."""
+    provider = config.LLM_PROVIDER
+
+    if provider == "anthropic":
+        if not config.ANTHROPIC_API_KEY:
+            return (
+                "ERROR: ANTHROPIC_API_KEY is not set. "
+                "Please add it to your .env file.\n"
+                "See .env.example for the expected format."
+            )
+        client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+        try:
+            response = client.messages.create(
+                model=config.CLAUDE_MODEL,
+                max_tokens=1024,
+                system=SYSTEM_PROMPT,
+                messages=[{"role": "user", "content": user_message}],
+            )
+            return response.content[0].text
+        except anthropic.AuthenticationError:
+            return "ERROR: Invalid Anthropic API key. Please check your .env file."
+        except anthropic.RateLimitError:
+            return "ERROR: Rate limit exceeded. Please wait a moment and try again."
+        except anthropic.APIError as e:
+            return f"ERROR: Anthropic API error — {e}"
+
+    elif provider == "gemini":
+        if not config.GEMINI_API_KEY:
+            return (
+                "ERROR: GEMINI_API_KEY is not set. "
+                "Please add it to your .env file.\n"
+                "See .env.example for the expected format."
+            )
+        client = openai.OpenAI(
+            api_key=config.GEMINI_API_KEY,
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+        )
+        try:
+            response = client.chat.completions.create(
+                model=config.GEMINI_MODEL,
+                max_tokens=1024,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_message},
+                ],
+            )
+            return response.choices[0].message.content
+        except openai.AuthenticationError:
+            return "ERROR: Invalid Gemini API key. Please check your .env file."
+        except openai.RateLimitError:
+            return "ERROR: Rate limit exceeded. Please wait a moment and try again."
+        except openai.APIError as e:
+            return f"ERROR: Gemini API error — {e}"
+
+    else:
+        return (
+            f"ERROR: Unknown LLM_PROVIDER '{provider}'. "
+            "Valid options are 'anthropic' or 'gemini'."
+        )
 
 
 def generate_answer(
@@ -113,40 +176,8 @@ def generate_answer(
     )
 
     # ---- Step 3: Generate ----
-    logger.info("Sending prompt to Claude...")
-
-    if not config.ANTHROPIC_API_KEY:
-        return RAGResult(
-            answer="ERROR: ANTHROPIC_API_KEY is not set. "
-                   "Please add it to your .env file.\n"
-                   "See .env.example for the expected format.",
-            sources=[],
-            retrieved_docs=docs,
-            distances=distances,
-        )
-
-    client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-
-    try:
-        response = client.messages.create(
-            model=config.CLAUDE_MODEL,
-            max_tokens=1024,
-            system=SYSTEM_PROMPT,
-            messages=[
-                {"role": "user", "content": user_message},
-            ],
-        )
-        answer_text = response.content[0].text
-    except anthropic.AuthenticationError:
-        answer_text = (
-            "ERROR: Invalid Anthropic API key. Please check your .env file."
-        )
-    except anthropic.RateLimitError:
-        answer_text = (
-            "ERROR: Rate limit exceeded. Please wait a moment and try again."
-        )
-    except anthropic.APIError as e:
-        answer_text = f"ERROR: Anthropic API error — {e}"
+    logger.info(f"Sending prompt to {config.LLM_PROVIDER}...")
+    answer_text = _call_llm(user_message)
 
     # ---- Build result ----
     sources = [

@@ -9,11 +9,16 @@ from dotenv import load_dotenv
 # Load .env file
 load_dotenv()
 
+# --- Provider ---
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "anthropic").lower()  # "anthropic" | "gemini"
+
 # --- API Keys ---
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# --- Claude Model ---
+# --- Models ---
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 
 # --- ChromaDB ---
 CHROMA_PERSIST_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
