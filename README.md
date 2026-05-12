@@ -1,6 +1,6 @@
 # ICRA — Intelligent Campus Resource Assistant
 
-A command-line RAG (Retrieval-Augmented Generation) chatbot that answers questions about campus facilities and services by retrieving relevant documents from a local knowledge base and generating natural language responses with Claude.
+A command-line RAG (Retrieval-Augmented Generation) chatbot that answers questions about campus facilities and services by retrieving relevant documents from a local knowledge base and generating natural language responses via Claude or Gemini.
 
 ## Architecture
 
@@ -15,8 +15,8 @@ User Question
                               │
                               ▼
                      ┌──────────────────┐
-                     │  Claude API      │
-                     │  (generation)    │
+                     │  LLM API         │
+                     │  Claude / Gemini │
                      └────────┬─────────┘
                               │
                               ▼
@@ -27,7 +27,7 @@ User Question
 
 **Embeddings:** sentence-transformers (`all-MiniLM-L6-v2`) — runs locally, no API key needed.
 **Vector Store:** ChromaDB — persistent, local storage in `./chroma_db/`.
-**LLM:** Anthropic Claude (via API) — generates answers from retrieved context.
+**LLM:** Anthropic Claude or Google Gemini (configurable via environment variable).
 
 ## Setup
 
@@ -53,17 +53,33 @@ pip install -r requirements.txt
 
 The first run will download the sentence-transformers embedding model (~80 MB). This only happens once.
 
-### 4. Set your Anthropic API key
+### 4. Configure your API keys
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` and replace `your-api-key-here` with your actual key:
+Edit `.env` to set your preferred provider and API key(s):
 
-```
+```env
+# Choose your LLM provider: "anthropic" (default) or "gemini"
+LLM_PROVIDER=anthropic
+
 ANTHROPIC_API_KEY=sk-ant-...
+GEMINI_API_KEY=AIza...
 ```
+
+You only need to set the key for the provider you intend to use.
+
+#### Getting an Anthropic API key
+
+Sign up at [console.anthropic.com](https://console.anthropic.com) and create an API key.
+
+#### Getting a Gemini API key
+
+1. Go to [aistudio.google.com/api-keys](https://aistudio.google.com/api-keys)
+2. Sign in with your Google account
+3. Click **Create API key** and copy the key into `GEMINI_API_KEY`
 
 ### 5. Run the server
 
@@ -127,13 +143,17 @@ icra-backend/
 
 ## Configuration
 
-Settings are in `config.py`:
+All settings are driven by environment variables (`.env`) and `config.py`:
 
-| Setting | Default | Description |
+| Variable | Default | Description |
 |---|---|---|
-| `CLAUDE_MODEL` | `claude-sonnet-4-20250514` | Claude model for generation |
-| `TOP_K_RESULTS` | `3` | Documents retrieved per query |
-| `EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformer model |
+| `LLM_PROVIDER` | `anthropic` | LLM provider: `anthropic` or `gemini` |
+| `ANTHROPIC_API_KEY` | — | Required when `LLM_PROVIDER=anthropic` |
+| `GEMINI_API_KEY` | — | Required when `LLM_PROVIDER=gemini` |
+| `GEMINI_MODEL` | `gemini-3.1-flash-lite` | Gemini model to use |
+| `CLAUDE_MODEL` | `claude-sonnet-4-20250514` | Claude model to use |
+| `TOP_K_RESULTS` | `5` | Documents retrieved per query |
+| `EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Local sentence-transformer model |
 | `VERBOSE` | `True` | Show retrieval logs in terminal |
 
 ## How the RAG Pipeline Works
