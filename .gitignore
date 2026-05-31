@@ -18,6 +18,11 @@ env/
 # ChromaDB local storage
 chroma_db/
 
+# SQLite database
+*.db
+*.db-shm
+*.db-wal
+
 # IDE
 .vscode/
 .idea/

@@ -27,6 +27,9 @@ CHROMA_COLLECTION_NAME = "campus_resources"
 # --- Data ---
 CAMPUS_DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "campus_data.json")
 
+# --- SQLite ---
+SQLITE_DB_PATH = os.path.join(os.path.dirname(__file__), "icra.db")
+
 # --- Retrieval ---
 TOP_K_RESULTS = 5  # Number of documents to retrieve per query
 
