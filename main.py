@@ -94,9 +94,14 @@ def main():
     print(WELCOME)
 
     # ── Startup checks ──
-    if not config.ANTHROPIC_API_KEY:
+    active_key = (
+        config.ANTHROPIC_API_KEY
+        if config.LLM_PROVIDER == "anthropic"
+        else config.GEMINI_API_KEY
+    )
+    if not active_key:
         print(color(
-            "WARNING: ANTHROPIC_API_KEY is not set.\n"
+            f"WARNING: No API key found for provider '{config.LLM_PROVIDER}'.\n"
             "Retrieval will still work, but answer generation requires the key.\n"
             "Add it to a .env file — see .env.example for the format.\n",
             RED,

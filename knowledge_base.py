@@ -130,3 +130,41 @@ def query_knowledge_base(
         n_results=top_k,
     )
     return results
+
+
+# ── Single-document operations for CRUD sync ────────────────────────────────
+
+
+def add_document(collection: chromadb.Collection, entry: dict):
+    """Add a single entry to the ChromaDB collection."""
+    doc_text = entry_to_document(entry)
+    collection.add(
+        documents=[doc_text],
+        ids=[entry["id"]],
+        metadatas=[{
+            "name": entry["name"],
+            "type": entry["type"],
+            "location": entry.get("location", ""),
+            "contact": entry.get("contact", ""),
+        }],
+    )
+
+
+def update_document(collection: chromadb.Collection, entry: dict):
+    """Update (upsert) a single entry in the ChromaDB collection."""
+    doc_text = entry_to_document(entry)
+    collection.upsert(
+        documents=[doc_text],
+        ids=[entry["id"]],
+        metadatas=[{
+            "name": entry["name"],
+            "type": entry["type"],
+            "location": entry.get("location", ""),
+            "contact": entry.get("contact", ""),
+        }],
+    )
+
+
+def delete_document(collection: chromadb.Collection, entry_id: str):
+    """Remove a single entry from the ChromaDB collection."""
+    collection.delete(ids=[entry_id])
