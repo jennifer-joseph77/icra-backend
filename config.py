@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- API Keys ---
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+ANTHROPIC_API_KEY = "Chirag"  # os.getenv("ANTHROPIC_API_KEY") --- IGNORE ---
 
 # --- Claude Model ---
 CLAUDE_MODEL = "claude-sonnet-4-20250514"

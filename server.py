@@ -1,13 +1,10 @@
 """
-ICRA — FastAPI server.
-Exposes the RAG pipeline as a simple POST /ask endpoint.
-
-Run:  uvicorn server:app --reload
+ICRA Chatbot - Full Integrated System
+Run: uvicorn server:app --reload
 """
 
 import logging
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -19,10 +16,7 @@ from rag_pipeline import generate_answer
 
 logger = logging.getLogger(__name__)
 
-# ── Lifespan: load ChromaDB once at startup ─────────────────────────────────
-
 collection = None
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,15 +24,12 @@ async def lifespan(app: FastAPI):
     logging.basicConfig(
         level=logging.INFO if config.VERBOSE else logging.WARNING,
     )
-    logger.info("Loading knowledge base into ChromaDB...")
+    logger.info("Loading knowledge base...")
     collection = get_or_create_collection()
     logger.info(f"Ready — {collection.count()} documents indexed.")
     yield
 
-
-# ── App ──────────────────────────────────────────────────────────────────────
-
-app = FastAPI(title="ICRA", lifespan=lifespan)
+app = FastAPI(title="ICRA Chatbot", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,102 +38,209 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# ── Models ───────────────────────────────────────────────────────────────────
+# ---------------- Models ----------------
 
 class AskRequest(BaseModel):
     question: str
-
 
 class Source(BaseModel):
     id: str
     name: str
     type: str
 
-
 class AskResponse(BaseModel):
     answer: str
     sources: list[Source]
 
-
-# ── Routes ───────────────────────────────────────────────────────────────────
+# ---------------- Frontend ----------------
 
 @app.get("/", response_class=HTMLResponse)
 async def index():
-    return """<!DOCTYPE html>
-<html lang="en">
+    return """
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICRA</title>
+<title>ICRA Chatbot</title>
+
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: system-ui, sans-serif; background: #f5f5f5; color: #333;
-         display: flex; flex-direction: column; align-items: center;
-         min-height: 100vh; padding: 3rem 1rem; }
-  h1 { margin-bottom: .25rem; }
-  p.subtitle { color: #666; margin-bottom: 2rem; }
-  form { display: flex; gap: .5rem; width: 100%; max-width: 600px; }
-  input { flex: 1; padding: .75rem 1rem; border: 1px solid #ccc;
-          border-radius: 8px; font-size: 1rem; }
-  button { padding: .75rem 1.5rem; background: #2563eb; color: #fff;
-           border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; }
-  button:disabled { opacity: .5; cursor: wait; }
-  #result { margin-top: 2rem; width: 100%; max-width: 600px; }
-  .answer { background: #fff; padding: 1.25rem; border-radius: 8px;
-            border: 1px solid #ddd; white-space: pre-wrap; line-height: 1.5; }
-  .sources { margin-top: .75rem; font-size: .85rem; color: #666; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:system-ui; }
+
+body { background:#343541; color:#ececf1; height:100vh; display:flex; }
+
+.app { display:flex; width:100%; }
+
+.sidebar {
+  width:260px;
+  background:#202123;
+  padding:1rem;
+}
+
+.sidebar h2 { margin-bottom:1rem; }
+
+.new-chat {
+  background:#343541;
+  padding:0.8rem;
+  border-radius:6px;
+  cursor:pointer;
+  border:1px solid #4d4d4f;
+  text-align:center;
+}
+
+.new-chat:hover { background:#40414f; }
+
+.main {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.chat-container {
+  flex:1;
+  overflow-y:auto;
+  padding:2rem 20%;
+}
+
+.message {
+  padding:1.2rem;
+  margin-bottom:1rem;
+  border-radius:8px;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+.user { background:#40414f; }
+.bot { background:#444654; }
+
+.sources {
+  font-size:0.8rem;
+  color:#bbb;
+  margin-top:0.5rem;
+}
+
+.input-area {
+  display:flex;
+  padding:1rem 20%;
+  border-top:1px solid #4d4d4f;
+}
+
+textarea {
+  flex:1;
+  padding:0.9rem;
+  border-radius:8px;
+  border:none;
+  background:#40414f;
+  color:white;
+  resize:none;
+  height:50px;
+}
+
+button {
+  margin-left:0.5rem;
+  padding:0 1.2rem;
+  border-radius:8px;
+  border:none;
+  background:#19c37d;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover { opacity:0.9; }
+
+.typing::after {
+  content:'...';
+  animation:dots 1s steps(3,end) infinite;
+}
+
+@keyframes dots {
+  0%{content:'';}
+  33%{content:'.';}
+  66%{content:'..';}
+  100%{content:'...';}
+}
 </style>
 </head>
+
 <body>
-  <h1>ICRA</h1>
-  <p class="subtitle">Intelligent Campus Resource Assistant</p>
-  <form id="askForm">
-    <input id="question" placeholder="Ask about campus facilities and services..." autofocus>
-    <button type="submit">Ask</button>
-  </form>
-  <div id="result"></div>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <h2>ICRA</h2>
+    <div class="new-chat" onclick="newChat()">+ New Chat</div>
+  </aside>
+
+  <main class="main">
+    <div id="chat" class="chat-container"></div>
+
+    <form id="form" class="input-area">
+      <textarea id="question" placeholder="Message ICRA..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+</div>
+
 <script>
-  const form = document.getElementById('askForm');
-  const input = document.getElementById('question');
-  const result = document.getElementById('result');
-  const btn = form.querySelector('button');
+const form = document.getElementById("form");
+const input = document.getElementById("question");
+const chat = document.getElementById("chat");
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const q = input.value.trim();
-    if (!q) return;
-    btn.disabled = true;
-    result.innerHTML = '<p style="color:#888">Thinking...</p>';
-    try {
-      const res = await fetch('/ask', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({question: q}),
-      });
-      const data = await res.json();
-      let html = '<div class="answer">' + escapeHtml(data.answer) + '</div>';
-      if (data.sources && data.sources.length) {
-        const names = data.sources.map(s => s.name).join(', ');
-        html += '<div class="sources">Sources: ' + escapeHtml(names) + '</div>';
-      }
-      result.innerHTML = html;
-    } catch (err) {
-      result.innerHTML = '<p style="color:red">Error: ' + escapeHtml(err.message) + '</p>';
-    } finally {
-      btn.disabled = false;
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const question = input.value.trim();
+  if (!question) return;
+
+  addMessage(question, "user");
+  input.value = "";
+
+  const typing = addMessage("ICRA is typing", "bot typing");
+
+  try {
+    const res = await fetch("/ask", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await res.json();
+    typing.remove();
+
+    const botMsg = addMessage(data.answer, "bot");
+
+    if (data.sources && data.sources.length) {
+      const src = document.createElement("div");
+      src.className = "sources";
+      src.textContent = "Sources: " + data.sources.map(s=>s.name).join(", ");
+      botMsg.appendChild(src);
     }
-  });
 
-  function escapeHtml(text) {
-    const d = document.createElement('div');
-    d.textContent = text;
-    return d.innerHTML;
+  } catch(err) {
+    typing.remove();
+    addMessage("Error connecting to server.", "bot");
   }
-</script>
-</body>
-</html>"""
+});
 
+function addMessage(text, type) {
+  const msg = document.createElement("div");
+  msg.className = "message " + type;
+  msg.textContent = text;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+  return msg;
+}
+
+function newChat() {
+  chat.innerHTML = "";
+}
+</script>
+
+</body>
+</html>
+"""
+
+# ---------------- Backend Route ----------------
 
 @app.post("/ask", response_model=AskResponse)
 async def ask(req: AskRequest):
