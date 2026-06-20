@@ -25,34 +25,41 @@ def load_campus_data(path: str = config.CAMPUS_DATA_PATH) -> list[dict]:
 def entry_to_document(entry: dict) -> str:
     """
     Convert a single campus data entry into a text document for embedding.
-    Combines all fields into a readable block so the embedding captures
-    the full semantics of the entry.
+    Safely handles missing fields.
     """
-    # Format hours — they can be a dict with varying keys
+
+    # Format hours
     hours_lines = []
+
     if isinstance(entry.get("hours"), dict):
         for period, time in entry["hours"].items():
             label = period.replace("_", " ").title()
             hours_lines.append(f"  {label}: {time}")
-    hours_text = "\n".join(hours_lines) if hours_lines else "  Not specified"
+
+    hours_text = (
+        "\n".join(hours_lines)
+        if hours_lines
+        else "  Not specified"
+    )
 
     # Format additional info
     additional = "\n".join(
-        f"  - {item}" for item in entry.get("additional_info", [])
+        f"  - {item}"
+        for item in entry.get("additional_info", [])
     )
 
-    doc = (
-        f"Name: {entry['name']}\n"
-        f"Type: {entry['type']}\n"
-        f"Location: {entry['location']}\n"
+    if not additional:
+        additional = "  None"
+
+    return (
+        f"Name: {entry.get('name', 'Unknown')}\n"
+        f"Type: {entry.get('type', 'Unknown')}\n"
+        f"Location: {entry.get('location', 'Not specified')}\n"
         f"Hours:\n{hours_text}\n"
-        f"Description: {entry['description']}\n"
-        f"Contact: {entry['contact']}\n"
+        f"Description: {entry.get('description', 'No description available')}\n"
+        f"Contact: {entry.get('contact', 'Not specified')}\n"
         f"Additional Info:\n{additional}"
     )
-    return doc
-
-
 def get_or_create_collection(
     reset: bool = False,
 ) -> chromadb.Collection:
@@ -95,10 +102,10 @@ def get_or_create_collection(
             documents.append(doc_text)
             ids.append(entry["id"])
             metadatas.append({
-                "name": entry["name"],
-                "type": entry["type"],
-                "location": entry["location"],
-                "contact": entry["contact"],
+                "name": entry.get("name", ""),
+                "type": entry.get("type", ""),
+                "location": entry.get("location", ""),
+                "contact": entry.get("contact", ""),
             })
 
         collection.add(

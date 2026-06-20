@@ -532,5 +532,23 @@
       "My Personalizations: Customize portal appearance and behavior",
       "My Feeds: Access RSS/Atom feeds if configured"
     ]
+  },
+  {
+    "id": "library",
+    "name": "Central Library",
+    "type": "facility",
+    "description": "The Central Library is located beside the Academic Block and is open from 8:00 AM to 8:00 PM."
+  },
+  {
+    "id": "it_helpdesk",
+    "name": "IT Help Desk",
+    "type": "service",
+    "description": "Located in the Administration Building. Contact: 1234567890."
+  },
+  {
+    "id": "cafeteria",
+    "name": "Campus Cafeteria",
+    "type": "facility",
+    "description": "Open from 8:00 AM to 9:00 PM and serves meals and snacks."
   }
 ]

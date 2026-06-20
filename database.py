@@ -35,6 +35,24 @@ def init_db():
             updated_at TEXT NOT NULL DEFAULT (datetime('now'))
         )
     """)
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS chat_sessions(
+            id TEXT PRIMARY KEY,
+            title TEXT,
+            created_at TEXT DEFAULT (datetime('now'))
+        )
+    """)
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS chat_messages(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT,
+            role TEXT,
+            content TEXT,
+            created_at TEXT DEFAULT (datetime('now'))
+        )
+    """)
     conn.commit()
     conn.close()
 
