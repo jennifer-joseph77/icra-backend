@@ -18,7 +18,18 @@ from fastapi import Request
 from pydantic import BaseModel
 
 import config
-from database import get_connection, init_db, seed_from_json, get_entries, get_entry, create_entry, update_entry, delete_entry
+from database import (
+    get_connection,
+    init_db,
+    seed_from_json,
+    get_entries,
+    get_entry,
+    create_entry,
+    update_entry,
+    delete_entry,
+    get_session_messages,
+    delete_session,
+)
 from knowledge_base import get_or_create_collection, add_document, update_document, delete_document
 from rag_pipeline import generate_answer
 from uuid import uuid4
@@ -112,6 +123,38 @@ async def ask(req: AskRequest):
 
     row = conn.execute(
         """
+        SELECT id
+        FROM chat_sessions
+        WHERE id = ?
+        """,
+        (req.session_id,)
+    ).fetchone()
+
+    if not row:
+        conn.close()
+
+        raise HTTPException(
+            status_code=404,
+            detail="Session not found"
+        )
+
+    conn.execute(
+        """
+        INSERT INTO chat_messages
+        (session_id, role, content)
+        VALUES (?, ?, ?)
+        """,
+        (
+            req.session_id,
+            "user",
+            req.question
+        )
+    )
+
+    conn.commit()
+
+    row = conn.execute(
+        """
         SELECT title
         FROM chat_sessions
         WHERE id = ?
@@ -137,12 +180,34 @@ async def ask(req: AskRequest):
         )
 
         conn.commit()
-
-  result = generate_answer(
+        
+    conn.close()
+    
+    result = generate_answer(
     req.question,
     collection
 )
+  
+  if req.session_id:
 
+    conn = get_connection()
+
+    conn.execute(
+        """
+        INSERT INTO chat_messages
+        (session_id, role, content)
+        VALUES (?, ?, ?)
+        """,
+        (
+            req.session_id,
+            "assistant",
+            result.answer
+        )
+    )
+
+    conn.commit()
+    conn.close()
+  
   return AskResponse(
     answer=result.answer,
     sources=[
@@ -211,9 +276,10 @@ def create_session():
     )
 
     conn.commit()
+    conn.close()
 
     return {"session_id":session_id}
-  
+
 @app.get("/sessions")
 def list_sessions():
 
@@ -227,7 +293,28 @@ def list_sessions():
         """
     ).fetchall()
 
+    conn.close()
+
     return [dict(r) for r in rows]
+
+@app.get("/sessions/{session_id}/messages")
+def session_messages(session_id: str):
+    return get_session_messages(session_id)
+
+
+@app.delete("/sessions/{session_id}")
+def remove_session(session_id: str):
+
+    deleted = delete_session(session_id)
+
+    if not deleted:
+        raise HTTPException(
+            status_code=404,
+            detail="Session not found"
+        )
+
+    return {"success": True}
+  
 # ── Management UI ────────────────────────────────────────────────────────────
 
 

@@ -14,9 +14,11 @@ import config
 def get_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(config.SQLITE_DB_PATH)
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
-    return conn
 
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA foreign_keys=ON")
+
+    return conn
 
 def init_db():
     """Create tables if they don't exist."""
@@ -45,14 +47,17 @@ def init_db():
     """)
 
     conn.execute("""
-        CREATE TABLE IF NOT EXISTS chat_messages(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            session_id TEXT,
-            role TEXT,
-            content TEXT,
-            created_at TEXT DEFAULT (datetime('now'))
-        )
-    """)
+    CREATE TABLE IF NOT EXISTS chat_messages(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        session_id TEXT NOT NULL,
+        role TEXT NOT NULL,
+        content TEXT NOT NULL,
+        created_at TEXT DEFAULT (datetime('now')),
+        FOREIGN KEY(session_id)
+        REFERENCES chat_sessions(id)
+        ON DELETE CASCADE
+    )
+""")
     conn.commit()
     conn.close()
 
@@ -180,4 +185,40 @@ def delete_entry(entry_id: str) -> bool:
     cursor = conn.execute("DELETE FROM entries WHERE id = ?", (entry_id,))
     conn.commit()
     conn.close()
+    return cursor.rowcount > 0
+
+def get_session_messages(session_id: str) -> list[dict]:
+
+    conn = get_connection()
+
+    rows = conn.execute(
+        """
+        SELECT role, content, created_at
+        FROM chat_messages
+        WHERE session_id = ?
+        ORDER BY id ASC
+        """,
+        (session_id,)
+    ).fetchall()
+
+    conn.close()
+
+    return [dict(r) for r in rows]
+
+
+def delete_session(session_id: str) -> bool:
+
+    conn = get_connection()
+
+    cursor = conn.execute(
+        """
+        DELETE FROM chat_sessions
+        WHERE id = ?
+        """,
+        (session_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
     return cursor.rowcount > 0

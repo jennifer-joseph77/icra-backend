@@ -25,58 +25,144 @@ await loadSessions();
 
 async function loadSessions() {
 
-try {
+    try {
 
-    const response =
-        await fetch("/sessions");
+        const response =
+            await fetch("/sessions");
 
-    const sessions =
-        await response.json();
+        const sessions =
+            await response.json();
 
-    const list =
-        document.getElementById("chat-list");
+        const list =
+            document.getElementById("chat-list");
 
-    if (!list) return;
+        if (!list) return;
 
-    list.innerHTML = "";
+        list.innerHTML = "";
 
-    sessions.forEach(session => {
+        sessions.forEach(session => {
 
-        const item =
-            document.createElement("div");
+            const item =
+                document.createElement("div");
 
-        item.className =
-            "chat-item";
+            item.className =
+                "chat-item";
+                if (session.id === currentSession) {
+                    item.classList.add("active-chat");
+                }
 
-        item.textContent =
-            session.title;
+            item.innerHTML = `
+                <span>${session.title}</span>
+                <span class="delete-chat">🗑</span>
+            `;
 
-        item.dataset.id =
-            session.id;
+            item.addEventListener(
+                "click",
+                async () => {
 
-        item.addEventListener(
-            "click",
-            () => {
+                    currentSession = session.id;
 
-                currentSession =
-                    session.id;
+                    localStorage.setItem(
+                        "currentSession",
+                        currentSession
+                    );
 
-                localStorage.setItem(
-                    "currentSession",
-                    currentSession
+                    await loadSessions(); // refresh active highlight
+
+                    await loadConversation(
+                        session.id
+                    );
+                }
+            );
+
+            const deleteBtn =
+                item.querySelector(
+                    ".delete-chat"
                 );
-            }
-        );
 
-        list.appendChild(item);
-    });
+            deleteBtn.addEventListener(
+                "click",
+                async (e) => {
 
-} catch (err) {
+                    e.stopPropagation();
 
-    console.error(err);
+                    const confirmDelete =
+                        confirm(
+                            "Delete this chat?"
+                        );
+
+                    if (!confirmDelete)
+                        return;
+
+                    await fetch(
+                        `/sessions/${session.id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+                    await loadSessions();
+
+                    if (currentSession === session.id) {
+
+                        currentSession = null;
+
+                        localStorage.removeItem(
+                            "currentSession"
+                        );
+
+                        await createSession();
+
+                        chatContainer.innerHTML = `
+                            <div class="welcome">
+                                <h1>ICRA</h1>
+                                <p>How can I help you today?</p>
+                            </div>
+                        `;
+                    }
+                }
+            );
+
+            list.appendChild(item);
+        });
+
+    } catch (err) {
+
+        console.error(err);
+    }
 }
 
+async function loadConversation(
+    sessionId
+) {
 
+    try {
+
+        const response =
+            await fetch(
+                `/sessions/${sessionId}/messages`
+            );
+
+        const messages =
+            await response.json();
+
+        chatContainer.innerHTML = "";
+
+        messages.forEach(msg => {
+
+            addMessage(
+                msg.content,
+                msg.role === "assistant"
+                    ? "bot"
+                    : "user"
+            );
+
+        });
+
+    } catch (err) {
+
+        console.error(err);
+    }
 }
 
 function addMessage(text, role) {
@@ -180,12 +266,76 @@ async (e) => {
 
 );
 
-window.onload = async () => {
+function toggleTheme() {
 
-if (!currentSession) {
-    await createSession();
+    document.body.classList.toggle(
+        "light-mode"
+    );
+
+    const btn =
+        document.querySelector(
+            ".theme-toggle"
+        );
+
+    if (
+        document.body.classList.contains(
+            "light-mode"
+        )
+    ) {
+
+        btn.innerHTML =
+            "☀️ Light Mode";
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    } else {
+
+        btn.innerHTML =
+            "🌙 Dark Mode";
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+    }
 }
 
-await loadSessions();
+window.onload = async () => {
 
+    const savedTheme =
+        localStorage.getItem(
+            "theme"
+        );
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add(
+            "light-mode"
+        );
+
+        const btn =
+            document.querySelector(
+                ".theme-toggle"
+            );
+
+        if (btn) {
+            btn.innerHTML =
+                "☀️ Light Mode";
+        }
+    }
+
+    if (!currentSession) {
+        await createSession();
+    }
+
+    await loadSessions();
+
+    if (currentSession) {
+        await loadConversation(
+            currentSession
+        );
+    }
 };
