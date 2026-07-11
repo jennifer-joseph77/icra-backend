@@ -8,14 +8,28 @@ Run:  uvicorn server:app --reload
 
 import logging
 from contextlib import asynccontextmanager
+from uuid import uuid4
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 import config
-from database import init_db, seed_from_json, get_entries, get_entry, create_entry, update_entry, delete_entry
+from database import (
+    get_connection,
+    init_db,
+    seed_from_json,
+    get_entries,
+    get_entry,
+    create_entry,
+    update_entry,
+    delete_entry,
+    get_session_messages,
+    delete_session,
+)
 from knowledge_base import get_or_create_collection, add_document, update_document, delete_document
 from rag_pipeline import generate_answer
 
@@ -46,6 +60,8 @@ async def lifespan(app: FastAPI):
 # ── App ──────────────────────────────────────────────────────────────────────
 
 app = FastAPI(title="ICRA", lifespan=lifespan)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 app.add_middleware(
     CORSMiddleware,
@@ -59,6 +75,7 @@ app.add_middleware(
 
 class AskRequest(BaseModel):
     question: str
+    session_id: str | None = None
 
 
 class Source(BaseModel):
@@ -95,85 +112,51 @@ class EntryUpdate(BaseModel):
 # ── Routes ───────────────────────────────────────────────────────────────────
 
 @app.get("/", response_class=HTMLResponse)
-async def index():
-    return """<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICRA</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: system-ui, sans-serif; background: #f5f5f5; color: #333;
-         display: flex; flex-direction: column; align-items: center;
-         min-height: 100vh; padding: 3rem 1rem; }
-  h1 { margin-bottom: .25rem; }
-  p.subtitle { color: #666; margin-bottom: 2rem; }
-  form { display: flex; gap: .5rem; width: 100%; max-width: 600px; }
-  input { flex: 1; padding: .75rem 1rem; border: 1px solid #ccc;
-          border-radius: 8px; font-size: 1rem; }
-  button { padding: .75rem 1.5rem; background: #2563eb; color: #fff;
-           border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; }
-  button:disabled { opacity: .5; cursor: wait; }
-  #result { margin-top: 2rem; width: 100%; max-width: 600px; }
-  .answer { background: #fff; padding: 1.25rem; border-radius: 8px;
-            border: 1px solid #ddd; white-space: pre-wrap; line-height: 1.5; }
-  .sources { margin-top: .75rem; font-size: .85rem; color: #666; }
-</style>
-</head>
-<body>
-  <h1>ICRA</h1>
-  <p class="subtitle">Intelligent Campus Resource Assistant</p>
-  <form id="askForm">
-    <input id="question" placeholder="Ask about campus facilities and services..." autofocus>
-    <button type="submit">Ask</button>
-  </form>
-  <div id="result"></div>
-<script>
-  const form = document.getElementById('askForm');
-  const input = document.getElementById('question');
-  const result = document.getElementById('result');
-  const btn = form.querySelector('button');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const q = input.value.trim();
-    if (!q) return;
-    btn.disabled = true;
-    result.innerHTML = '<p style="color:#888">Thinking...</p>';
-    try {
-      const res = await fetch('/ask', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({question: q}),
-      });
-      const data = await res.json();
-      let html = '<div class="answer">' + escapeHtml(data.answer) + '</div>';
-      if (data.sources && data.sources.length) {
-        const names = data.sources.map(s => s.name).join(', ');
-        html += '<div class="sources">Sources: ' + escapeHtml(names) + '</div>';
-      }
-      result.innerHTML = html;
-    } catch (err) {
-      result.innerHTML = '<p style="color:red">Error: ' + escapeHtml(err.message) + '</p>';
-    } finally {
-      btn.disabled = false;
-    }
-  });
-
-  function escapeHtml(text) {
-    const d = document.createElement('div');
-    d.textContent = text;
-    return d.innerHTML;
-  }
-</script>
-</body>
-</html>"""
+async def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.post("/ask", response_model=AskResponse)
 async def ask(req: AskRequest):
+    if req.session_id:
+        conn = get_connection()
+        row = conn.execute(
+            "SELECT id FROM chat_sessions WHERE id = ?", (req.session_id,)
+        ).fetchone()
+        if not row:
+            conn.close()
+            raise HTTPException(status_code=404, detail="Session not found")
+
+        conn.execute(
+            "INSERT INTO chat_messages (session_id, role, content) VALUES (?, ?, ?)",
+            (req.session_id, "user", req.question),
+        )
+        conn.commit()
+
+        row = conn.execute(
+            "SELECT title FROM chat_sessions WHERE id = ?", (req.session_id,)
+        ).fetchone()
+        if row and row["title"] == "New Chat":
+            title = req.question[:35] + "..." if len(req.question) > 35 else req.question
+            conn.execute(
+                "UPDATE chat_sessions SET title = ? WHERE id = ?",
+                (title, req.session_id),
+            )
+            conn.commit()
+
+        conn.close()
+
     result = generate_answer(req.question, collection)
+
+    if req.session_id:
+        conn = get_connection()
+        conn.execute(
+            "INSERT INTO chat_messages (session_id, role, content) VALUES (?, ?, ?)",
+            (req.session_id, "assistant", result.answer),
+        )
+        conn.commit()
+        conn.close()
+
     return AskResponse(
         answer=result.answer,
         sources=[Source(**s) for s in result.sources],
@@ -225,6 +208,45 @@ async def delete_existing_entry(entry_id: str):
     if not deleted:
         raise HTTPException(status_code=404, detail="Entry not found")
     delete_document(collection, entry_id)
+
+
+# ── Chat sessions ────────────────────────────────────────────────────────────
+
+
+@app.post("/sessions")
+async def create_session():
+    session_id = str(uuid4())
+    conn = get_connection()
+    conn.execute(
+        "INSERT INTO chat_sessions (id, title) VALUES (?, ?)",
+        (session_id, "New Chat"),
+    )
+    conn.commit()
+    conn.close()
+    return {"session_id": session_id}
+
+
+@app.get("/sessions")
+async def list_sessions():
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT * FROM chat_sessions ORDER BY created_at DESC"
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+@app.get("/sessions/{session_id}/messages")
+async def session_messages(session_id: str):
+    return get_session_messages(session_id)
+
+
+@app.delete("/sessions/{session_id}")
+async def remove_session(session_id: str):
+    deleted = delete_session(session_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return {"success": True}
 
 
 # ── Management UI ────────────────────────────────────────────────────────────
