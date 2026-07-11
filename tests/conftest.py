@@ -22,9 +22,10 @@ FIXTURE_CAMPUS_DATA = Path(__file__).resolve().parent / "fixtures" / "campus_dat
 
 @pytest.fixture
 def mock_call_llm(monkeypatch):
-    """Stubs the only function in the app that makes real network calls to an LLM."""
+    """Stubs the functions in the app that make real network calls to an LLM."""
     mock = MagicMock(return_value="MOCKED_ANSWER")
     monkeypatch.setattr(rag_pipeline, "_call_llm", mock)
+    monkeypatch.setattr(rag_pipeline, "_call_llm_with_tools", mock)
     return mock
 
 

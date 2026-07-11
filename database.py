@@ -53,6 +53,20 @@ def init_db():
             FOREIGN KEY(session_id) REFERENCES chat_sessions(id) ON DELETE CASCADE
         )
     """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS knowledge_gaps (
+            id TEXT PRIMARY KEY,
+            question TEXT NOT NULL,
+            context TEXT NOT NULL DEFAULT '',
+            session_id TEXT,
+            status TEXT NOT NULL DEFAULT 'open',
+            resolved_entry_id TEXT,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY(session_id) REFERENCES chat_sessions(id) ON DELETE SET NULL,
+            FOREIGN KEY(resolved_entry_id) REFERENCES entries(id) ON DELETE SET NULL
+        )
+    """)
     conn.commit()
     conn.close()
 
@@ -202,3 +216,100 @@ def delete_session(session_id: str) -> bool:
     conn.commit()
     conn.close()
     return cursor.rowcount > 0
+
+
+def create_knowledge_gap(
+    question: str, context: str = "", session_id: str | None = None
+) -> dict:
+    """Record a new open knowledge gap. Returns the created row."""
+    gap_id = f"gap-{uuid.uuid4().hex[:8]}"
+    conn = get_connection()
+    conn.execute(
+        """INSERT INTO knowledge_gaps (id, question, context, session_id, status)
+           VALUES (?, ?, ?, ?, 'open')""",
+        (gap_id, question, context, session_id),
+    )
+    conn.commit()
+    row = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def get_knowledge_gaps(
+    page: int = 1, per_page: int = 20, status: str | None = None
+) -> tuple[list[dict], int]:
+    """Return a page of knowledge gaps (optionally filtered by status) and the total count."""
+    conn = get_connection()
+    where = "WHERE status = ?" if status else ""
+    params: tuple = (status,) if status else ()
+    total = conn.execute(
+        f"SELECT COUNT(*) FROM knowledge_gaps {where}", params
+    ).fetchone()[0]
+    offset = (page - 1) * per_page
+    rows = conn.execute(
+        f"SELECT * FROM knowledge_gaps {where} ORDER BY created_at DESC LIMIT ? OFFSET ?",
+        (*params, per_page, offset),
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows], total
+
+
+def get_knowledge_gap(gap_id: str) -> dict | None:
+    """Get a single knowledge gap by ID."""
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def update_knowledge_gap_text(gap_id: str, question: str, context: str) -> dict | None:
+    """Rephrase the question / edit the context of a gap. Returns the updated row or None."""
+    conn = get_connection()
+    existing = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    if not existing:
+        conn.close()
+        return None
+    conn.execute(
+        """UPDATE knowledge_gaps SET question=?, context=?, updated_at=datetime('now')
+           WHERE id=?""",
+        (question, context, gap_id),
+    )
+    conn.commit()
+    row = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def resolve_knowledge_gap(gap_id: str, entry_id: str) -> dict | None:
+    """Mark a gap resolved and link it to the newly created entry. Returns the updated row or None."""
+    conn = get_connection()
+    existing = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    if not existing:
+        conn.close()
+        return None
+    conn.execute(
+        """UPDATE knowledge_gaps SET status='resolved', resolved_entry_id=?, updated_at=datetime('now')
+           WHERE id=?""",
+        (entry_id, gap_id),
+    )
+    conn.commit()
+    row = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def dismiss_knowledge_gap(gap_id: str) -> dict | None:
+    """Mark a gap dismissed. Returns the updated row or None if not found."""
+    conn = get_connection()
+    existing = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    if not existing:
+        conn.close()
+        return None
+    conn.execute(
+        "UPDATE knowledge_gaps SET status='dismissed', updated_at=datetime('now') WHERE id=?",
+        (gap_id,),
+    )
+    conn.commit()
+    row = conn.execute("SELECT * FROM knowledge_gaps WHERE id = ?", (gap_id,)).fetchone()
+    conn.close()
+    return dict(row)
