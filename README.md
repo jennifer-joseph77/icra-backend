@@ -97,6 +97,15 @@ The API is also available directly at `POST /ask` (see interactive docs at [http
 python main.py
 ```
 
+### 6. Run the tests
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest
+```
+
+The suite runs against isolated temporary SQLite/ChromaDB instances and a small fixture dataset — it never touches your real `icra.db` or `chroma_db`, and mocks the LLM call so it doesn't hit Anthropic/Gemini. The first run still needs network access to download the `all-MiniLM-L6-v2` embedding model if it isn't already cached locally.
+
 ## Sample Queries
 
 Try these questions to see the RAG pipeline in action:
@@ -128,16 +137,28 @@ This makes the RAG pipeline transparent: you can see which documents were retrie
 
 ```
 icra-backend/
-├── server.py            # FastAPI server (web UI + /ask API)
-├── main.py              # Terminal interface (alternative)
-├── rag_pipeline.py      # Retrieve → Augment → Generate
-├── knowledge_base.py    # JSON loader and ChromaDB indexing
-├── config.py            # Settings and environment variables
-├── requirements.txt     # Python dependencies
+├── server.py             # FastAPI server (chat UI, /ask, entries CRUD, chat sessions)
+├── main.py               # Terminal interface (alternative)
+├── rag_pipeline.py       # Retrieve → Augment → Generate
+├── knowledge_base.py     # JSON loader and ChromaDB indexing
+├── database.py           # SQLite layer (entries, chat sessions/messages)
+├── config.py             # Settings and environment variables
+├── templates/
+│   └── index.html        # Chat UI (sessions sidebar, theme toggle)
+├── static/
+│   ├── script.js
+│   └── styles.css
 ├── data/
-│   └── campus_data.json # 27 campus facility entries
-├── chroma_db/           # ChromaDB persistent storage (gitignored)
-├── .env.example         # Template for API key
+│   └── campus_data.json  # 38 campus facility entries
+├── tests/                # pytest integration test suite
+│   ├── conftest.py
+│   └── fixtures/campus_data.json
+├── requirements.txt      # Python dependencies
+├── requirements-dev.txt  # Test dependencies (pytest, httpx)
+├── pytest.ini
+├── chroma_db/            # ChromaDB persistent storage (gitignored)
+├── icra.db               # SQLite database (gitignored)
+├── .env.example          # Template for API key
 └── .gitignore
 ```
 

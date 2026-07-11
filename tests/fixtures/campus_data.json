@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fixture-library",
+    "name": "Ravenwood Memorial Library",
+    "type": "facility",
+    "location": "Building 4, North Quad",
+    "hours": {
+      "monday_friday": "7:00 AM - 11:00 PM",
+      "saturday": "9:00 AM - 6:00 PM",
+      "sunday": "12:00 PM - 8:00 PM"
+    },
+    "description": "The main campus library, offering study rooms, printing services, and a large reference collection.",
+    "contact": "library@fixture.test",
+    "additional_info": [
+      "Group study rooms can be reserved online",
+      "Silent study floor is the 3rd floor",
+      "Interlibrary loan requests take 3-5 business days"
+    ]
+  },
+  {
+    "id": "fixture-financial-aid",
+    "name": "Financial Aid Office",
+    "type": "service",
+    "location": "Building 1, Room 105",
+    "hours": {
+      "monday_friday": "8:30 AM - 4:30 PM"
+    },
+    "description": "Handles student loans, grants, scholarships, and work-study applications.",
+    "contact": "finaid@fixture.test",
+    "additional_info": []
+  },
+  {
+    "id": "fixture-cs-lab",
+    "name": "Computer Science Lab",
+    "type": "facility",
+    "location": "Building 7, 2nd Floor",
+    "hours": {
+      "monday_friday": "24 hours with student ID"
+    },
+    "description": "Computer lab with workstations for CS coursework, available to declared CS majors.",
+    "contact": "cslab@fixture.test",
+    "additional_info": ["Printing is free for the first 50 pages per semester"]
+  },
+  {
+    "id": "fixture-registrar",
+    "name": "Registrar's Office",
+    "type": "service",
+    "location": "Building 1, Room 201",
+    "hours": {
+      "monday_friday": "9:00 AM - 5:00 PM"
+    },
+    "description": "Manages course registration, transcripts, and enrollment verification.",
+    "contact": "registrar@fixture.test",
+    "additional_info": ["Transcript requests can be made online"]
+  },
+  {
+    "id": "fixture-dining-hall",
+    "name": "Cedar Hall Dining Commons",
+    "type": "facility",
+    "location": "Building 3, Ground Floor",
+    "hours": {
+      "monday_friday": "7:00 AM - 9:00 PM",
+      "saturday": "9:00 AM - 8:00 PM",
+      "sunday": "9:00 AM - 8:00 PM"
+    },
+    "description": "The main dining hall, serving breakfast, lunch, and dinner with vegetarian and vegan options.",
+    "contact": "dining@fixture.test",
+    "additional_info": ["Meal swipes reset daily at midnight"]
+  }
+]
