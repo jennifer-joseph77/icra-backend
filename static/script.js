@@ -4,6 +4,13 @@ const chatContainer = document.getElementById("chatContainer");
 const chatForm = document.getElementById("chatForm");
 const questionInput = document.getElementById("questionInput");
 
+DOMPurify.addHook("afterSanitizeAttributes", (node) => {
+    if (node.tagName === "A") {
+        node.setAttribute("target", "_blank");
+        node.setAttribute("rel", "noopener noreferrer");
+    }
+});
+
 async function createSession() {
 const response = await fetch("/sessions", {
 method: "POST"
@@ -179,7 +186,13 @@ wrapper.className =
     "message " + role;
 
 const textDiv = document.createElement("div");
-textDiv.textContent = text;
+textDiv.className = "message-content";
+
+if (role === "bot") {
+    textDiv.innerHTML = DOMPurify.sanitize(marked.parse(text));
+} else {
+    textDiv.textContent = text;
+}
 
 const timeSmall = document.createElement("small");
 timeSmall.textContent = new Date().toLocaleTimeString();
